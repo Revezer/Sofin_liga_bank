@@ -138,22 +138,31 @@
 @media (min-width: $desktop-width) {
     .header__conteiner {
         height: 91px;
+        justify-content: space-between;
     }
       
     .header__list {
-        margin-top: 37px;
-        margin-left: 210px;
+        margin-left: 0;
+        margin-top: 36px;
+        white-space: nowrap;
     }
 
     .login__text {
         display: block;
         margin-top: 36px;
-        margin-left: 266px;
+        margin-left: 0px;
+        white-space: nowrap;
+    }
+
+    .header__logomenu {
+        width: 150px;
+        margin-left: 97px;
+        margin-top: 26px;
+        margin-right: 109px;
     }
       
     .logo__img {
-        margin-top: 18px;
-        margin-left: 66px;
+        margin: 0;
     }
     
     .list__element {
@@ -162,12 +171,14 @@
     }
     
     .header__login {
-        width: 537px;
+        width: 173px;
+        margin-right: 98px;
+        margin-left: 19.5%;
     }
     
     .header__login::before {
-        left: 236px;
         top: 34px;
+        left: -30px;
     }    
 }
 
