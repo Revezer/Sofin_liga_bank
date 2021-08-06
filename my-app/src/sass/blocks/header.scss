@@ -1,0 +1,173 @@
+.header {
+    background: #F6F7FF;
+}
+
+.header__conteiner {
+    min-width: 320px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    height: 48px;
+    justify-content: space-between;
+}
+
+.header__logomenu {
+    display: flex;
+}
+
+.header__button {
+    padding: 0;
+    width: 16px;
+    height: 12px;
+    border: none;
+    background-color: #F6F7FF;
+    background-image: url('../../img/menu-mobile.svg');
+    margin-top: 18px;
+    margin-left: 15px;
+}
+  
+.header__list {
+    display: none;
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+  
+.header__title {
+    margin: 0px;
+    padding-left: 9px;
+    padding-top: 34px;
+    margin-right: 60px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 21px;
+    line-height: 23px;
+}
+
+.header__logo {
+    width: 115px;
+    height: 17px;
+}
+  
+.logo__img {
+    width: 100%;
+    display: block;
+    margin-left: 13px;
+    margin-top: 14px;
+}
+
+.list__element {
+    font-family: 'Roboto';
+    font-size: 16px;
+    line-height: 19px;
+    font-style: normal;
+}
+
+.list__link {
+    text-decoration: none;
+    color: #1F1E25;
+}
+
+.header__login {
+    font-family: 'Roboto';
+    font-size: 16px;
+    line-height: 19px;
+    position: relative;
+    text-decoration: none;
+    color: #1F1E25;
+}
+
+.header__login::before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-image: url('../../img/login-mobile.svg');
+    width: 14px;
+    height: 16px;
+    right: 15px;
+    top: 16px;
+}
+
+.login__text {
+    display: none;
+}
+
+
+@media (min-width: $tablet-width) {
+    .header__conteiner {
+        height: 69px;
+        justify-content: normal;
+    }
+
+    .header__logomenu {
+        margin-top: 8px;
+        margin-left: 31px;
+    }
+
+    .header__list {
+        display: flex;
+        margin-left: 98px;
+        margin-top: 28px;
+        flex-grow: 1;
+        justify-content: space-between;
+    }
+
+    .list__element {
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+    .header__button {
+        display: none;
+    }
+
+    .header__login {
+        width: 114px;
+    }
+
+    .header__login::before {
+        background-image: url('../../img/login-tablet.svg');
+        width: 20px;
+        height: 22px;
+        top: 23px;
+        right: 45px;
+    }
+}
+
+@media (min-width: $desktop-width) {
+    .header__conteiner {
+        height: 91px;
+    }
+      
+    .header__list {
+        margin-top: 37px;
+        margin-left: 210px;
+    }
+
+    .login__text {
+        display: block;
+        margin-top: 36px;
+        margin-left: 266px;
+    }
+      
+    .logo__img {
+        margin-top: 18px;
+        margin-left: 66px;
+    }
+    
+    .list__element {
+        font-size: 16px;
+        line-height: 19px;
+    }
+    
+    .header__login {
+        width: 537px;
+    }
+    
+    .header__login::before {
+        left: 236px;
+        top: 34px;
+    }    
+}
+
