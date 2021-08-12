@@ -2,7 +2,7 @@ import {ActionType} from './action';
 
 const initialState = {
   menu: false,
-  reviews: 'k',
+  width: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,10 +12,10 @@ const reducer = (state = initialState, action) => {
           ...state,
           menu: action.payload,
         };
-      case ActionType.CHOICE_INFORMATION:
+      case ActionType.CHANGE_WIDTH:
         return {
           ...state,
-          info: action.payload,
+          width: action.payload,
         };
       default:
     }

@@ -1,0 +1,137 @@
+// .header {
+//     display: none;
+// }
+
+// .slider {
+//     display: none;
+// }
+
+.service__container {
+    height: 362px;
+    background: #F6F7FF;
+}
+
+.service__title {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    display: flex;
+    align-items: center;
+    color: #1F1E25;
+    margin-top: 54px;
+    margin-left: 15px;
+    white-space: pre-wrap;
+}
+
+.service__text-conteiner {
+    display: flex;
+    flex-direction: column;
+    width: 242px;
+    height: 114px;
+    justify-content: space-between;
+    margin-top: 21px;
+
+}
+
+.service__text {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 130%;
+    display: flex;
+    align-items: center;
+    color: #1F1E25;
+    margin-left: 30px;
+    white-space: pre-wrap;
+    position: relative;
+    z-index: 1;
+}
+
+.service__text::before {
+    content: '';
+    position: absolute;
+    display: block;
+    background-image: url('../../img/check.svg');
+    width: 10px;
+    height: 8px;
+    left: -16px;
+    top: 4px;
+}
+
+.service__button {
+    width: 290px;
+    height: 43px;
+    border: none;
+    background: #2C36F2;
+    border-radius: 4px;
+    margin-top: 25px;
+    margin-left: 15px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #F6F7FF;
+}
+
+.service__content-text {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 140%;
+    color: #1F1E25;
+    white-space: pre-wrap;
+    margin-top: 22px;
+    display: block;
+    margin-left: 15px;
+}
+
+.service__text-button {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    color: #1F1E25;
+    border: none;
+    background: #F6F7FF;
+    text-decoration-line: underline;
+}
+
+.service__text-conteiner--height {
+    height: 78px;
+}
+
+.service__text-contener--fourth {
+    height: 102px;
+}
+
+.service__container::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 87px;
+    height: 113px;
+    top: 98px;
+    right: 0;
+}
+
+.service__conteiner-pig::after {
+    background-image: url('../../img/piggybank.png');
+}
+
+.service__conteiner-car::after {
+    background-image: url('../../img/car.png');
+}
+
+.service__conteiner-lock::after{
+    background-image: url('../../img/lock.png');
+}
+
+.service__conteiner-telephone::after{
+    background-image: url('../../img/telephone.png');
+}

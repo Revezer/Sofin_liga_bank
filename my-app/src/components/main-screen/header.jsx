@@ -30,8 +30,8 @@ const Header = (props) => {
                     <button onClick={openMenu} className='header__button' />
                     <a href='*' className='header__logo'>
                         <picture className='logo__img'>
-                            <source media='(min-width: 1024px)' srcset={logoDesktop} />
-                            <source media='(min-width: 768px)' srcset={logoTablet} />
+                            <source media='(min-width: 1024px)' srcSet={logoDesktop} />
+                            <source media='(min-width: 768px)' srcSet={logoTablet} />
                             <img src={logoMobile} alt='логотип банка' />
                         </picture>
                     </a>

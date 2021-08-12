@@ -1,6 +1,6 @@
 export const ActionType = {
-    MENU_TOGGLE: `main/slide`,
-    CHOICE_INFORMATION: 'main/info',
+    MENU_TOGGLE: `main/slider`,
+    CHANGE_WIDTH: 'main/services'
   };
   
 export const menuToggle = (mode) => ({
@@ -8,7 +8,7 @@ export const menuToggle = (mode) => ({
     payload: mode
 });
 
-export const choiceInformation = (info) => ({
-    type: ActionType.CHOICE_INFORMATION,
-    payload: info
+export const newWidth = (width) => ({
+    type: ActionType.CHANGE_WIDTH,
+    payload: width
 });

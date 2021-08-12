@@ -1,0 +1,256 @@
+.slider {
+    height: 226px;
+}
+
+.slider__item {
+    position: relative;
+}
+
+.slider__item-card {
+    background-color: #2C36F2;
+}
+
+.slider__item-card::before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-image: url('../../img/black-card-mobile.jpg');
+    top: 29px;
+    right: 0px;
+    width: 105px;
+    height: 152px;
+}
+
+.item__conteiner {
+    padding-left: 15px;
+}
+
+.item__title {
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 37px;
+    display: flex;
+    margin-top: 39px;
+    margin-bottom: 0px;
+    position: inherit;
+}
+
+.item__title-white {
+    color: #F6F7FF;
+}
+
+.item__text-white {
+    color: #E0E1EA;
+}
+
+.item__text {
+    font-family: 'Roboto';
+    font-size: 16px;
+    margin-top: 9px;
+    margin-bottom: 0px;
+    position: inherit;
+}
+
+.item__text-width {
+    width: 150px;
+}
+
+.item__button {
+    border: none;
+    border-radius: 4px;
+    width: 188px;
+    height: 43px;
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: #1F1E25;
+    justify-content: center;
+    margin-top: 26px;
+    background: #2C36F2;
+    color: #F6F7FF;
+    position: inherit;
+}
+
+.item__button-white {
+    background: #F6F7FF;
+    color: #1F1E25;
+}
+
+.slider__item-boy {
+    background-color: #dfe3ed;
+    background-image: url('../../img/boy-mobile.png');
+    background-repeat: no-repeat;
+}
+
+.slider__item-girl {
+    background-color: #e9f0fd;
+    background-image: url('../../img/girl-mobile.png');
+    background-repeat: no-repeat;
+}
+
+.item__img {
+    display: none;
+}
+
+@media (min-width: $tablet-width) {
+    .swiper-container {
+        height: 300px;
+    }
+
+    .swiper-slide {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .swiper-wrapper {
+        height: 300px;
+    }
+
+    .item__conteiner {
+        padding-left: 85px;
+    }
+
+    .item__title {
+        font-size: 45px;
+        margin-top: 66px;
+    }
+
+    .item__text {
+        font-size: 18px;
+        margin-top: 7px;
+    }
+
+    .item__button {
+        margin-top: 30px;
+        font-weight: 500;
+        font-size: 16px;
+        width: 206px;
+        height: 48px;
+    }
+
+    .item__img {
+        display: block;
+        padding-right: 63px;
+        margin-top: 38px;
+        z-index: 1;
+        position: relative;
+    }
+
+    .slider__item-card::after {
+        content: '';
+        display: block;
+        position: absolute;
+        background-image: none;
+        width: 133px;
+        height: 300px;
+        background: linear-gradient(180.24deg, rgba(32, 39, 179, 0) 32.89%, #2027B3 99.79%);
+        top: 0px;
+        right: 0px;
+    }
+
+    .slider__item-card::before {
+        background-image: none;
+        width: 179px;
+        height: 199px;
+        background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 27.26%, #3841FF 97.14%);
+        top: 101px;
+        right: 133px;
+    }
+
+    .item__text-width {
+        width: 350px;
+    }
+
+    .slider__item-boy {
+        background-image: url('../../img/boy-tablet.png');
+        width: 768px;
+        height: 300px;
+    }
+
+    .slider__item-girl {
+        background-image: url('../../img/girl-tablet.png');
+        width: 768px;
+        height: 300px;
+    }
+}
+
+@media (min-width: $desktop-width) {
+    .swiper-container {
+        height: 400px;
+    }
+
+    .slider__item {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .swiper-wrapper {
+        height: 400px;
+    }
+
+    .item__conteiner {
+        padding-left: 268px;
+        z-index: 1;
+    }
+
+    .item__title {
+        font-size: 52px;
+        margin-top: 104px;
+    }
+
+    .item__text {
+        margin-top: 10px;
+        font-size: 22px;
+    }
+
+    .item__button {
+        width: 243px;
+        height: 53px;
+        margin-top: 34px;
+        font-size: 18px;
+    }
+
+    .item__button-white {
+        width: 234px;
+    }
+
+    .item__img {
+        padding-right: 224px;
+        margin-top: 60px;
+    }
+
+    .slider__item-card::before {
+        width: 300px;
+        height: 400px;
+        background-image: url('../../img/background-l.png');
+        left: 0;
+        top: 0;
+    }
+
+    .slider__item-card::after {
+        width: 568px;
+        height: 400px;
+        background-image: url('../../img/background-r.png');
+        right: 0;
+        top: 0;
+    }
+
+    .item__text-width {
+        width: 400px;
+    }
+
+    .slider__item-boy {
+        background-image: url('../../img/boy-desktop.png');
+        width: 1366px;
+        height: 400px;
+    }
+
+    .slider__item-girl {
+        background-image: url('../../img//girl-desktop.png');
+        width: 1366px;
+        height: 400px;
+    }
+}
