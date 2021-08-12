@@ -96,17 +96,14 @@
 }
 
 @media (min-width: $tablet-width) {
-    .swiper-container {
+    .slider {
         height: 300px;
     }
 
-    .swiper-slide {
+    .slider__item {
+        height: 300px;
         display: flex;
         justify-content: space-between;
-    }
-
-    .swiper-wrapper {
-        height: 300px;
     }
 
     .item__conteiner {
@@ -178,16 +175,13 @@
 }
 
 @media (min-width: $desktop-width) {
-    .swiper-container {
+    .slider {
         height: 400px;
     }
 
     .slider__item {
         display: flex;
         justify-content: space-between;
-    }
-
-    .swiper-wrapper {
         height: 400px;
     }
 

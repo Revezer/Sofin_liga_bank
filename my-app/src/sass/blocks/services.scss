@@ -135,3 +135,92 @@
 .service__conteiner-telephone::after{
     background-image: url('../../img/telephone.png');
 }
+
+@media (min-width: $tablet-width) {
+    .service__container {
+        flex-direction: column;
+        height: 380px;
+    }
+
+    .service__title {
+        font-size: 18px;
+        margin-left: 45px;
+        margin-bottom: 0;
+    }
+
+    .service__text-conteiner {
+        margin-top: 24px;
+        width: 405px;
+    }
+
+    .service__text {
+        font-size: 16px;
+        margin-left: 66px;
+    }
+
+    .service__button {
+        width: 198px;
+        height: 48px;
+        font-size: 16px;
+        margin-top: 30px;
+        margin-left: 45px;
+    }
+
+    .service__text-conteiner--height {
+        height: 92px;
+    }
+
+    .service__content-text {
+        font-size: 16px;
+        margin-top: 29px;
+        margin-left: 45px;
+    }
+
+    .service__text-button {
+        font-size: 16px;
+    }
+
+    .service__title--nowrap {
+        white-space: inherit;
+        width: 380px;
+    }
+
+    .service__text--width {
+        width: 320px;
+    }
+
+    .service__text-contener--fourth {
+        height: 98px;
+    }
+
+    .service__text::before {
+        background-image: url('../../img/check-tablet.svg');
+        width: 13px;
+        height: 10px;
+        left: -22px;
+        top: 6px;
+    }
+
+    .service__container::after {
+        width: 289px;
+        height: 260px;
+        top: 60px;
+        right: 45px;
+    }
+
+    .service__conteiner-pig::after {
+        background-image: url('../../img/piggybank-tablet.png');
+    }
+    
+    .service__conteiner-car::after {
+        background-image: url('../../img/car-tablet.png');
+    }
+    
+    .service__conteiner-lock::after{
+        background-image: url('../../img/lock-tablet.png');
+    }
+    
+    .service__conteiner-telephone::after{
+        background-image: url('../../img/telephone-tablet.png');
+    }
+}
