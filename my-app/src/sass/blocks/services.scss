@@ -224,3 +224,145 @@
         background-image: url('../../img/telephone-tablet.png');
     }
 }
+
+@media (min-width: $desktop-width) {
+    .service__menu {
+        padding-left: 98px;
+        padding-right: 98px;
+        display: flex;
+        margin-top: 60px;
+    }
+
+    .menu__button {
+        flex-grow: 1;
+        border: none;
+        height: 93px;
+        padding: 0;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #4C4B51;
+    }
+
+    .menu__button--active {
+        color: #1F1E25;
+        background: #F6F7FF;
+    }
+
+    .menu__text {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        display: flex;
+        align-items: center;
+        padding-left: 12px;
+    }
+
+    .menu__vault {
+        width: 34px;
+        height: 33px;
+    }
+
+    .menu__cards {
+        width: 34px;
+        height: 30px;
+    }
+
+    .menu__security {
+        width: 28px;
+        height: 34px;
+    }
+
+    .menu__phone {
+        width: 20px;
+        height: 34px;
+    }
+
+    .service__container {
+        margin-left: 98px;
+        margin-right: 98px;
+        height: 399px;
+        position: relative;
+    }
+
+    .service__title {
+        margin-top: 0;
+        font-size: 22px;
+        padding-top: 53px;
+        margin-left: 71px;
+    }
+
+    .service__text {
+        font-size: 18px;
+        margin-left: 91px;
+    }
+
+    .service__text-conteiner {
+        margin-top: 28px;
+        height: 108px;
+        width: 473px;
+    }
+
+    .service__button {
+        margin-top: 34px;
+        margin-left: 70px;
+        width: 198px;
+        height: 51px;
+    }
+
+    .service__text-conteiner--height {
+        height: 99px;
+    }
+
+    .service__content-text {
+        margin-left: 70px;
+        margin-top: 29px;
+        font-size: 18px;
+    }
+
+    .service__text-button {
+        font-size: 18px;
+        padding-top: 0;
+    }
+
+    .service__title--nowrap {
+        width: 415px;
+    }
+
+    .service__text--width {
+        width: 335px;
+    }
+
+    .service__text-conteiner--fourth {
+        height: 108px;
+    }
+
+    .service__container::after {
+        right: 135px;
+        width: 440px;
+        height: 290px;
+    }
+
+    .service__conteiner-pig::after {
+        background-image: url('../../img/piggybank-desktop.png');
+        top: 60px;
+    }
+
+    .service__conteiner-telephone::after {
+        background-image: url('../../img/telephone-desktop.png');
+        top: 53px;
+    }
+
+    .service__conteiner-lock::after {
+        background-image: url('../../img/lock-desktop.png');
+        top: 48px;
+    }
+
+    .service__conteiner-car::after {
+        background-image: url('../../img/car-desktop.png');
+        top: 55px;
+    }
+}

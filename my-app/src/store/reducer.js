@@ -3,6 +3,7 @@ import {ActionType} from './action';
 const initialState = {
   menu: false,
   width: 0,
+  selectedMenu: 'deposit'
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,6 +18,11 @@ const reducer = (state = initialState, action) => {
           ...state,
           width: action.payload,
         };
+      case ActionType.SERVICE_MENU:
+        return {
+          ...state,
+          selectedMenu: action.payload
+        }
       default:
     }
   return state;

@@ -10,7 +10,7 @@ SwiperCore.use([Autoplay]);
 const Slider = () => {
     
     return(
-        <Swiper className='slider' loop={true} autoplay={{ delay: 400000 }}>
+        <Swiper className='slider' loop={true} autoplay={{ delay: 4000 }}>
             <SwiperSlide className='slider__item slider__item-card'>
                 <div className='item__conteiner'>
                     <h2 className='item__title item__title-white'>Лига Банк</h2>
