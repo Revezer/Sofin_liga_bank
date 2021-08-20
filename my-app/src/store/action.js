@@ -1,7 +1,7 @@
 export const ActionType = {
-    MENU_TOGGLE: `main/slider`,
+    MENU_TOGGLE: 'main/slider',
     CHANGE_WIDTH: 'main/services',
-    SERVICE_MENU: `serices/menu`,
+    SERVICE_MENU: 'serices/menu',
   };
   
 export const menuToggle = (mode) => ({

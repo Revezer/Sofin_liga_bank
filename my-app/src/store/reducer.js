@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           selectedMenu: action.payload
-        }
+        };
       default:
     }
   return state;
