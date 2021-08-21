@@ -3,7 +3,8 @@ import {ActionType} from './action';
 const initialState = {
   menu: false,
   width: 0,
-  selectedMenu: 'deposit'
+  selectedMenu: 'deposit',
+  login: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -23,6 +24,11 @@ const reducer = (state = initialState, action) => {
           ...state,
           selectedMenu: action.payload
         };
+      case ActionType.SWITCH_LOGIN:
+        return {
+          ...state,
+          login: action.payload
+        }
       default:
     }
   return state;

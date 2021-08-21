@@ -104,6 +104,8 @@
     position: relative;
     text-decoration: none;
     color: #1F1E25;
+    border: none;
+    background: #F6F7FF;
 }
 
 .header__login-open {
@@ -139,8 +141,6 @@
 
 .login__text-open {
     display: block;
-    margin-top: 20px;
-    margin-left: 44px;
 }
 
 .header__close {

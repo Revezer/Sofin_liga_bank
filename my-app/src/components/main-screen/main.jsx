@@ -3,18 +3,35 @@ import CalculatorComponent from './calculator'
 import HeaderComponent from './header'
 import ServicesComponent from './services'
 import SliderComponent from './slider'
+import MapComponent from './map'
+import {connect} from 'react-redux';
+import LoginComponent from './login'
 
-const Main = () => {
+const Main = (props) => {
+    const {login} = props
+
+    const examinationLogin = login === true ? <LoginComponent /> : ''
+
     return(
         <>
             <HeaderComponent />
+            {examinationLogin}
             <main>
                 <SliderComponent />
                 <ServicesComponent />
                 <CalculatorComponent />
+                <MapComponent />
             </main>
         </>
     )
 }
 
-export default Main;
+const mapStateToProps = (state) => ({
+    login: state.login
+})
+
+const mapDispatchToProps = (dispatch) => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -3,10 +3,10 @@ import logoDesktop from '../../img/logo-desktop.svg';
 import logoTablet from '../../img/logo-tablet.svg';
 import logoMobile from '../../img/logo-mobile.svg';
 import {connect} from 'react-redux';
-import {menuToggle} from '../../store/action';
+import {menuToggle, switchLogin} from '../../store/action';
 
 const Header = (props) => {
-    const {menu, switchingMenu} = props;
+    const {menu, switchingMenu, switchingLogin} = props;
 
     const openMenu = () => {
         switchingMenu(true)
@@ -14,6 +14,15 @@ const Header = (props) => {
 
     const closeMenu = () => {
         switchingMenu(false)
+    }
+
+    const openLogin = () => {
+        switchingLogin(true)
+        window.onkeydown = (evt) => {
+            if ( evt.keyCode === 27 ) {
+                switchingLogin(false)
+            }
+        }
     }
 
     const headerConteiner = menu === true ? 'header__conteiner header__conteiner-open' : 'header__conteiner';
@@ -42,9 +51,9 @@ const Header = (props) => {
                     <li className={listElement}><a href='*' className='list__link'>Конвертер валют</a></li>
                     <li className={listElement}><a href='*' className='list__link'>Контакты</a></li>
                 </ul>
-                <a href='*' className={headerLogin}>
+                <button href='*' className={headerLogin} onClick={openLogin}>
                     <span className={loginText}>Войти в Интернет-банк</span>
-                </a>
+                </button>
                 {closeButton}
             </div>
         </header>
@@ -58,6 +67,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     switchingMenu(mode) {
         dispatch(menuToggle(mode))
+    },
+    switchingLogin(bool) {
+        dispatch(switchLogin(bool))
     }
 })
 

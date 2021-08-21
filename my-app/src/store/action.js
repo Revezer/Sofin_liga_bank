@@ -2,6 +2,7 @@ export const ActionType = {
     MENU_TOGGLE: 'main/slider',
     CHANGE_WIDTH: 'main/services',
     SERVICE_MENU: 'serices/menu',
+    SWITCH_LOGIN: 'main/header'
   };
   
 export const menuToggle = (mode) => ({
@@ -17,4 +18,9 @@ export const newWidth = (width) => ({
 export const selectedMenu = (selected) => ({
     type: ActionType.SERVICE_MENU,
     payload: selected
+});
+
+export const switchLogin = (bool) => ({
+    type: ActionType.SWITCH_LOGIN,
+    payload: bool
 });

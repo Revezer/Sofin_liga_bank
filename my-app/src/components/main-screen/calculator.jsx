@@ -6,16 +6,6 @@ const orderingData = {}
 
 const Calculator = () => {
 
-    // const [goal, setGoal] = useState('Выберите цель кредита');
-    // const [secondStep, setSecondStep] = useState(false);
-    // const [propertyValue, setPropertyValue] = useState(2000000)
-    // const [contribution, setContribution] = useState(10)
-    // const [year, setYear] = useState(5)
-    // const [capital, setCapital] = useState(false)
-    // const [anInitialFee, setAnInitialFee] = useState(200000)
-
-    // const [goo, setgoo] = useState(2)
-
     const [information, setInformation] = useState({
         goal: 'Выберите цель кредита',
         secondStep: false,
@@ -24,16 +14,15 @@ const Calculator = () => {
         year: 5,
         capital: false,
         anInitialFee: 200000,
-        ordering: false
+        ordering: false,
+        applicationNumber: 1,
+        gratitude: false
     })
 
     const handleChange = (event) => {
         setInformation({
             ...information,
-            goal: event.target.value
-        })
-        setInformation({
-            ...information,
+            goal: event.target.value,
             secondStep: true
         })
     }
@@ -140,6 +129,17 @@ const Calculator = () => {
         }
     }
 
+    const transformationNumber = (number) => {
+        if(number > 0 && number < 10)
+             return "000" + number;
+        else if(number >= 10 && number < 100)
+             return "00" + number;
+        else if(number >= 100 && number < 1000)
+             return "0" + number;
+     }
+
+    const typeLoan = orderingData.goal === 'Ипотечное кредитование' ? 'Ипотека' : 'Автокредит'
+
     const interestRate = information.contribution < 15 ? 9.40 : 8.50
 
     const formula = Math.ceil((mortgageAmount() * (interestRate / 100 /12)) / (1 - (1 / Math.pow(1 + (interestRate / 100 /12), information.year * 12))))
@@ -154,27 +154,64 @@ const Calculator = () => {
             ordering: true
         })
         Object.assign(orderingData, information)
+        window.onkeydown = (evt) => {
+            if ( evt.keyCode === 27 ) {
+                setInformation({
+                    ...information,
+                    ordering: false
+                })
+            }
+        };
+    }
+
+    const submittingForm = (event) => {
+        event.preventDefault()
+        setInformation({
+            ...information,
+            applicationNumber: information.applicationNumber + 1,
+            ordering: false,
+            gratitude: true
+        })
+    }
+
+    const closePopUp = () => {
+        setInformation({
+            ...information,
+            gratitude: false
+        })
+    }
+
+    const gratitudePopUp = () => {
+        if(information.gratitude === true) {
+            return(
+                <div className='calculator__popup'>
+                    <span className='popup__text'>Спасибо за обращение в наш банк.</span>
+                    <span className='popup__notification'>Наш менеджер скоро свяжется с вами по указанному номеру телефона</span>
+                    <button className='popup__button' onClick={closePopUp}></button>
+                </div>
+            )
+        }
     }
 
     const clearanceStep = () => {
         if(information.ordering === true) {
             return(
-                <form>
-                    <span>Шаг 3. Оформление заявки</span>
-                    <span>№ 0010</span>
-                    <span>Номер заявки</span>
-                    <span>{orderingData.goal}</span>
-                    <span>Цель кредита</span>
-                    <span>{orderingData.propertyValue + ' рублей'}</span>
-                    <span>Стоимость недвижимости</span>
-                    <span>{orderingData.anInitialFee + ' рублей'}</span>
-                    <span>Первоначальный взнос</span>
-                    <span>{orderingData.year + ' лет'}</span>
-                    <span>Срок кредитования</span>
-                    <input placeholder='ФИО' type='text'></input>
-                    <input placeholder='Телефон' type='tel'></input>
-                    <input placeholder='E-mail' type='email'></input>
-                    <button>Отправить</button>
+                <form className='calculator__form form' onSubmit={submittingForm}>
+                    <span className='form__text form__text--center'>Шаг 3. Оформление заявки</span>
+                    <span className='form__text form__text--margin'>{'№  ' + transformationNumber(orderingData.applicationNumber)}</span>
+                    <span className='form__description'>Номер заявки</span>
+                    <span className='form__text'>{typeLoan}</span>
+                    <span className='form__description'>Цель кредита</span>
+                    <span className='form__text'>{orderingData.propertyValue + ' рублей'}</span>
+                    <span className='form__description'>Стоимость недвижимости</span>
+                    <span className='form__text'>{orderingData.anInitialFee + ' рублей'}</span>
+                    <span className='form__description'>Первоначальный взнос</span>
+                    <span className='form__text'>{orderingData.year + ' лет'}</span>
+                    <span className='form__description'>Срок кредитования</span>
+                    <input className='form__input form__input--margin' required placeholder='ФИО' type='text'></input>
+                    <input className='form__input' required placeholder='Телефон' type='tel'></input>
+                    <input className='form__input' required placeholder='E-mail' type='email'></input>
+                    <button className='form__button' type='submit'>Отправить</button>
                 </form>
             )
         }
@@ -252,6 +289,7 @@ const Calculator = () => {
                 <option value='Автомобильное кредитование' className='calculator__option'>Автомобильное кредитование</option>
             </select>
             {nextStep()}
+            {gratitudePopUp()}
         </div>
     )
 }
