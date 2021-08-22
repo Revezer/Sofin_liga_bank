@@ -1,16 +1,17 @@
 import React from 'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
-import SwiperCore, {Autoplay} from 'swiper';
+import SwiperCore, {Autoplay, Pagination, Scrollbar} from 'swiper';
 import 'swiper/swiper.scss';
+import 'swiper/components/pagination/pagination.scss';
 import cardsTablet from '../../img/cards-tablet.png';
 import cardsDesktop from '../../img/cards-desktop.png'
 
-SwiperCore.use([Autoplay]);
+SwiperCore.use([Autoplay, Pagination, Scrollbar]);
 
 const Slider = () => {
     
     return(
-        <Swiper className='slider' loop={true} autoplay={{ delay: 4000 }}>
+        <Swiper className='slider' loop={true} autoplay={{ delay: 4000 }} pagination={{ clickable: true }}>
             <SwiperSlide className='slider__item slider__item-card'>
                 <div className='item__conteiner'>
                     <h2 className='item__title item__title-white'>Лига Банк</h2>

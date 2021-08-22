@@ -198,16 +198,26 @@ const Calculator = () => {
             return(
                 <form className='calculator__form form' onSubmit={submittingForm}>
                     <span className='form__text form__text--center'>Шаг 3. Оформление заявки</span>
-                    <span className='form__text form__text--margin'>{'№  ' + transformationNumber(orderingData.applicationNumber)}</span>
-                    <span className='form__description'>Номер заявки</span>
-                    <span className='form__text'>{typeLoan}</span>
-                    <span className='form__description'>Цель кредита</span>
-                    <span className='form__text'>{orderingData.propertyValue + ' рублей'}</span>
-                    <span className='form__description'>Стоимость недвижимости</span>
-                    <span className='form__text'>{orderingData.anInitialFee + ' рублей'}</span>
-                    <span className='form__description'>Первоначальный взнос</span>
-                    <span className='form__text'>{orderingData.year + ' лет'}</span>
-                    <span className='form__description'>Срок кредитования</span>
+                    <div className='form__conteiner'>
+                        <span className='form__text form__text--margin'>{'№  ' + transformationNumber(orderingData.applicationNumber)}</span>
+                        <span className='form__description'>Номер заявки</span>
+                    </div>
+                    <div className='form__conteiner'>
+                        <span className='form__text'>{typeLoan}</span>
+                        <span className='form__description'>Цель кредита</span>
+                    </div>
+                    <div  className='form__conteiner'>
+                        <span className='form__text'>{orderingData.propertyValue + ' рублей'}</span>
+                        <span className='form__description'>Стоимость недвижимости</span>
+                    </div>
+                    <div  className='form__conteiner'>
+                        <span className='form__text'>{orderingData.anInitialFee + ' рублей'}</span>
+                        <span className='form__description'>Первоначальный взнос</span>
+                    </div>
+                    <div  className='form__conteiner'>
+                        <span className='form__text'>{orderingData.year + ' лет'}</span>
+                        <span className='form__description'>Срок кредитования</span>
+                    </div>
                     <input className='form__input form__input--margin' required placeholder='ФИО' type='text'></input>
                     <input className='form__input' required placeholder='Телефон' type='tel'></input>
                     <input className='form__input' required placeholder='E-mail' type='email'></input>
@@ -230,14 +240,24 @@ const Calculator = () => {
                 <>
                     <div className='calculator__offer offer'>
                         <span className='offer__text offer__text--first'>Наше предложение</span>
-                        <span className='offer__text offer__text--margin'>{mortgageAmount() + ' рублей'}</span>
-                        <span className='offer__description'>Сумма ипотеки</span>
-                        <span className='offer__text'>{interestRate + '%'}</span>
-                        <span className='offer__description'>Процентная ставка</span>
-                        <span className='offer__text'>{formula + ' рублей'}</span>
-                        <span className='offer__description'>Ежемесячный платеж</span>
-                        <span className='offer__text'>{income + ' рублей'}</span>
-                        <span className='offer__description'>Необходимый доход</span>
+                        <div className='offer__block'>
+                            <div className='offer__conteiner'>
+                                <span className='offer__text offer__text--margin'>{mortgageAmount() + ' рублей'}</span>
+                                <span className='offer__description'>Сумма ипотеки</span>
+                            </div>
+                            <div className='offer__conteiner offer__conteiner--tabletmargin'>
+                                <span className='offer__text'>{interestRate + '%'}</span>
+                                <span className='offer__description'>Процентная ставка</span>
+                            </div>
+                            <div className='offer__conteiner offer__conteiner--tablet'>
+                                <span className='offer__text'>{formula + ' рублей'}</span>
+                                <span className='offer__description'>Ежемесячный платеж</span>
+                            </div>
+                            <div className='offer__conteiner offer__conteiner--tablet offer__conteiner--tabletmargin'>
+                                <span className='offer__text'>{income + ' рублей'}</span>
+                                <span className='offer__description'>Необходимый доход</span>
+                            </div>
+                        </div>
                         <button className='offer__button' onClick={handleOrdering}>Оформить заявку</button>
                     </div>
                     {clearanceStep()}
