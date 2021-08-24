@@ -1,8 +1,6 @@
 import React from 'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import SwiperCore, {Autoplay, Pagination, Scrollbar} from 'swiper';
-import 'swiper/swiper.scss';
-import 'swiper/components/pagination/pagination.scss';
 import cardsTablet from '../../img/cards-tablet.png';
 import cardsDesktop from '../../img/cards-desktop.png'
 

@@ -6,6 +6,7 @@ import SliderComponent from './slider'
 import MapComponent from './map'
 import {connect} from 'react-redux';
 import LoginComponent from './login'
+import FooterComponent from './footer'
 
 const Main = (props) => {
     const {login} = props
@@ -22,6 +23,7 @@ const Main = (props) => {
                 <CalculatorComponent />
                 <MapComponent />
             </main>
+            <FooterComponent />
         </>
     )
 }

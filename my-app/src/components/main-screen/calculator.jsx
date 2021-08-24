@@ -219,8 +219,10 @@ const Calculator = () => {
                         <span className='form__description'>Срок кредитования</span>
                     </div>
                     <input className='form__input form__input--margin' required placeholder='ФИО' type='text'></input>
-                    <input className='form__input' required placeholder='Телефон' type='tel'></input>
-                    <input className='form__input' required placeholder='E-mail' type='email'></input>
+                    <div className='form__conteiner-inpute'>
+                        <input className='form__input' required placeholder='Телефон' type='tel'></input>
+                        <input className='form__input form__inpute--right' required placeholder='E-mail' type='email'></input>
+                    </div>
                     <button className='form__button' type='submit'>Отправить</button>
                 </form>
             )
@@ -228,41 +230,42 @@ const Calculator = () => {
     }
 
     const offerStep = () => {
-        if(mortgageAmount() < 500000) {
-            return(
-                <div className='calculator__inaccessibility inaccessibility'>
-                    <span className='inaccessibility__text'>Наш банк не выдаёт ипотечные кредиты меньше 200 000 рублей.</span>
-                    <span className='inaccessibility__description'>Попробуйте использовать другие параметры для расчёта.</span>
-                </div>
-            )
-        } else {
-            return(
-                <>
-                    <div className='calculator__offer offer'>
-                        <span className='offer__text offer__text--first'>Наше предложение</span>
-                        <div className='offer__block'>
-                            <div className='offer__conteiner'>
-                                <span className='offer__text offer__text--margin'>{mortgageAmount() + ' рублей'}</span>
-                                <span className='offer__description'>Сумма ипотеки</span>
-                            </div>
-                            <div className='offer__conteiner offer__conteiner--tabletmargin'>
-                                <span className='offer__text'>{interestRate + '%'}</span>
-                                <span className='offer__description'>Процентная ставка</span>
-                            </div>
-                            <div className='offer__conteiner offer__conteiner--tablet'>
-                                <span className='offer__text'>{formula + ' рублей'}</span>
-                                <span className='offer__description'>Ежемесячный платеж</span>
-                            </div>
-                            <div className='offer__conteiner offer__conteiner--tablet offer__conteiner--tabletmargin'>
-                                <span className='offer__text'>{income + ' рублей'}</span>
-                                <span className='offer__description'>Необходимый доход</span>
-                            </div>
-                        </div>
-                        <button className='offer__button' onClick={handleOrdering}>Оформить заявку</button>
+        if(information.secondStep === true) {
+            if(mortgageAmount() < 500000) {
+                return(
+                    <div className='calculator__inaccessibility inaccessibility'>
+                        <span className='inaccessibility__text'>Наш банк не выдаёт ипотечные кредиты меньше 200 000 рублей.</span>
+                        <span className='inaccessibility__description'>Попробуйте использовать другие параметры для расчёта.</span>
                     </div>
-                    {clearanceStep()}
-                </>
-            )
+                )
+            } else {
+                return(
+                    <>
+                        <div className='calculator__offer offer'>
+                            <span className='offer__text offer__text--first'>Наше предложение</span>
+                            <div className='offer__block'>
+                                <div className='offer__conteiner'>
+                                    <span className='offer__text offer__text--margin'>{mortgageAmount() + ' рублей'}</span>
+                                    <span className='offer__description'>Сумма ипотеки</span>
+                                </div>
+                                <div className='offer__conteiner offer__conteiner--tabletmargin'>
+                                    <span className='offer__text'>{interestRate + '%'}</span>
+                                    <span className='offer__description'>Процентная ставка</span>
+                                </div>
+                                <div className='offer__conteiner offer__conteiner--tablet'>
+                                    <span className='offer__text'>{formula + ' рублей'}</span>
+                                    <span className='offer__description'>Ежемесячный платеж</span>
+                                </div>
+                                <div className='offer__conteiner offer__conteiner--tablet offer__conteiner--tabletmargin'>
+                                    <span className='offer__text'>{income + ' рублей'}</span>
+                                    <span className='offer__description'>Необходимый доход</span>
+                                </div>
+                            </div>
+                            <button className='offer__button' onClick={handleOrdering}>Оформить заявку</button>
+                        </div>
+                    </>
+                )
+            }
         }
     }
 
@@ -293,7 +296,6 @@ const Calculator = () => {
                         <input className='calculator__inputcapital' type="checkbox" onChange={handleChangeCapital}/>
                         <span className={checkCapital}>Использовать материнский капитал</span>
                     </label>
-                    {offerStep()}
                 </>
             )
         }
@@ -302,13 +304,19 @@ const Calculator = () => {
     return(
         <div className='calculator'>
             <h3 className='calculator__title'>Кредитный калькулятор</h3>
-            <span className='calculator__text'>Шаг 1. Цель кредита</span>
-            <select className='calculator__select' value={information.goal} onChange={handleChange}>
-                <option className='calculator__option calculator__option--display'>Выберите цель кредита</option>
-                <option value='Ипотечное кредитование' className='calculator__option'>Ипотечное кредитование</option>
-                <option value='Автомобильное кредитование' className='calculator__option'>Автомобильное кредитование</option>
-            </select>
-            {nextStep()}
+            <div className='calculator__conteiner'>
+                <div className='calculator__box'>
+                    <span className='calculator__text'>Шаг 1. Цель кредита</span>
+                    <select className='calculator__select' value={information.goal} onChange={handleChange}>
+                        <option className='calculator__option calculator__option--display'>Выберите цель кредита</option>
+                        <option value='Ипотечное кредитование' className='calculator__option'>Ипотечное кредитование</option>
+                        <option value='Автомобильное кредитование' className='calculator__option'>Автомобильное кредитование</option>
+                    </select>
+                    {nextStep()}
+                </div>
+                {offerStep()}
+            </div>
+            {clearanceStep()}
             {gratitudePopUp()}
         </div>
     )

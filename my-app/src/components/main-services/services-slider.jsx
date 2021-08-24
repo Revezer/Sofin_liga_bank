@@ -1,10 +1,13 @@
 import React from 'react'
 import {Swiper, SwiperSlide} from 'swiper/react';
+import SwiperCore, {Pagination, Scrollbar} from 'swiper';
+
+SwiperCore.use([Pagination, Scrollbar]);
 
 const ServiceSwiper = () => {
 
     return(
-        <Swiper>
+        <Swiper className='service__slider' pagination={{ clickable: true }}>
             <SwiperSlide className='service__container service__conteiner-pig'>
                 <h3 className='service__title'>
                     {'Вклады Лига Банка – это выгодная\nинвестиция в свое будущее'}

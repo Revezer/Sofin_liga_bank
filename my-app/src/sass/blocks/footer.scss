@@ -1,0 +1,251 @@
+.footer {
+    height: 412px;
+    background: #F6F7FF;
+}
+
+.footer__conteiner {
+    margin-left: 15px;
+    padding-top: 30px;
+    height: 352px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__image {
+    height: 17px;
+}
+
+.footer__cont {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 162px;
+}
+
+.footer__boxs {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-top: 10px;
+    height: 179px;
+}
+
+.footer__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding: 0;
+    height: 102px;
+}
+
+.footer__item {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #1F1E25;
+}
+
+.footer__link {
+    text-decoration: none;
+    color: #1F1E25;
+}
+
+.footer__box {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    height: 48px;
+}
+
+.footer__link--mobile {
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    position: relative;
+}
+
+.footer__text {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 140%;
+    color: #707C87;
+    width: 172px;
+    margin-top: 1px;
+}
+
+.footer__link--telephone {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #1F1E25;
+
+    position: relative;
+}
+
+.footer__text--width {
+    width: 160px;
+
+}
+
+.footer__socials {
+    display: flex;
+    list-style: none;
+    width: 117px;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-left: 0px;
+}
+
+.footer__link--mobile::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-image: url('../../img/mobile.svg');
+    top: 1px;
+    left: -30px;
+}
+
+.footer__link--telephone::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-image: url('../../img/telephone-icon.svg');
+    top: 1px;
+    left: -33px;
+}
+
+.footer__address {
+    display: none;
+}
+
+@media (min-width: $tablet-width) {
+    .footer {
+        height: 350px;
+    }
+
+    .footer__conteiner {
+        width: 768px;
+        height: 350px;
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: 15px;
+        width: auto;
+        margin-left: 45px;
+        padding: 0;
+        flex-direction: row;
+    }
+
+    .footer__cont {
+        margin-top: 53px;
+        justify-content: normal;
+        height: auto;
+    }
+
+    .footer__boxs {
+        justify-content: normal;
+        margin-left: 89px;
+        margin-top: 61px;
+        height: 278px;
+    }
+
+    .footer__image {
+        height: 22px;
+    }
+
+    .footer__list {
+        margin-top: 31px;
+        height: 111px;
+    }
+
+    .footer__item {
+        font-size: 16px;
+    }
+
+    .footer__address {
+        display: block;
+        order: 1;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 140%;
+        color: #707C87;
+        width: 265px;
+        height: 43px;
+        margin-top: 13px;
+    }
+
+    .footer__text {
+        margin-top: 3px;
+    }
+
+    .footer__box--telephone {
+        margin-top: 31px;
+        padding-left: 33px;
+    }
+
+    .footer__socials {
+        margin-top: 33px;
+    }
+}
+
+@media (min-width: $desktop-width) {
+    .footer {
+        height: 224px;
+    }
+
+    .footer__conteiner {
+        width: auto;
+        justify-content: space-between;
+        flex-direction: row;
+        margin-left: 98px;
+        margin-right: 98px;
+        height: 224px;
+    }
+
+    .footer__cont {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-grow: 1;
+        margin-top: 49px;
+        position: relative;
+        height: 150px;
+    }
+
+    .footer__boxs {
+        flex-direction: row;
+        margin-left: 0px;
+        flex-grow: 1;
+        justify-content: center;
+        height: 150px;
+    }
+
+    .footer__address {
+        position: absolute;
+        top: 30px;
+    }
+
+    .footer__list {
+        margin-top: 9px;
+    }
+
+    .footer__box--telephone {
+        margin-top: 0;
+    }
+
+    .footer__socials {
+        margin-top: 0;
+    }
+}

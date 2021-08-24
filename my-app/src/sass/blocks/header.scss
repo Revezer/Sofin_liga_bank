@@ -1,3 +1,7 @@
+.body {
+    max-width: 1900px;
+}
+
 .header {
     background: #F6F7FF;
 }
@@ -209,7 +213,6 @@
 
     .login__text {
         display: block;
-        margin-top: 36px;
         margin-left: 0px;
         white-space: nowrap;
     }

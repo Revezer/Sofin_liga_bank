@@ -4,7 +4,21 @@ const initialState = {
   menu: false,
   width: 0,
   selectedMenu: 'deposit',
-  login: false
+  login: false,
+  points: [
+    {
+      latitude: 57.1522200,
+      longitude: 65.5272200
+    },
+    {
+      latitude: 54.9924400,
+      longitude: 73.3685900
+    },
+    {
+      latitude: 55.7887400,
+      longitude: 49.1221400
+    }
+  ]
 };
 
 const reducer = (state = initialState, action) => {

@@ -1,11 +1,3 @@
-// .header {
-//     display: none;
-// }
-
-// .slider {
-//     display: none;
-// }
-
 .service__container {
     height: 362px;
     background: #F6F7FF;
@@ -120,6 +112,22 @@
     right: 0;
 }
 
+.service__slider .swiper-pagination-bullet {
+    margin: 0 3px;
+    width: 6px;
+    height: 6px;
+    background: #2028B6;
+    opacity: 1;
+}
+
+.service__slider .swiper-pagination {
+    bottom: 7px;
+}
+
+.service__slider .swiper-pagination-bullet-active {
+    background-color: #E0E0E0;
+}
+
 .service__conteiner-pig::after {
     background-image: url('../../img/piggybank.png');
 }
@@ -156,6 +164,22 @@
     .service__text {
         font-size: 16px;
         margin-left: 66px;
+    }
+
+    .service__slider .swiper-pagination-bullet {
+        margin: 0 3px;
+        width: 8px;
+        height: 8px;
+        background: #2028B6;
+        opacity: 1;
+    }
+    
+    .service__slider .swiper-pagination {
+        bottom: 12px;
+    }
+    
+    .service__slider .swiper-pagination-bullet-active {
+        background-color: #E0E0E0;
     }
 
     .service__button {
@@ -243,6 +267,7 @@
         align-items: center;
         justify-content: center;
         color: #4C4B51;
+        width: 33%;
     }
 
     .menu__button--active {
@@ -304,13 +329,13 @@
         margin-top: 28px;
         height: 108px;
         width: 473px;
+        height: 122px;
     }
 
     .service__button {
         margin-top: 34px;
         margin-left: 70px;
         width: 198px;
-        height: 51px;
     }
 
     .service__text-conteiner--height {

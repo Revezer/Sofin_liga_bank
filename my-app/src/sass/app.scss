@@ -1,8 +1,12 @@
 @import './normalize.css';
 @import './viewports.scss';
 @import './fonts.scss';
+@import 'swiper/swiper.scss';
+@import 'swiper/components/pagination/pagination.scss';
 @import './blocks/header.scss';
 @import './blocks/slider.scss';
 @import './blocks/services.scss';
 @import './blocks/calculator.scss';
 @import './blocks/login.scss';
+@import './blocks/map.scss';
+@import './blocks/footer.scss';
