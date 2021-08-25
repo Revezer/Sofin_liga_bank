@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 
 const maternalCapital = 470000
 
@@ -16,14 +16,20 @@ const Calculator = () => {
         anInitialFee: 200000,
         ordering: false,
         applicationNumber: 1,
-        gratitude: false
+        gratitude: false,
+        openinput: false
     })
+
+    const nameRef = useRef()
+    const mailRef = useRef()
+    const telephoneRef = useRef()
 
     const handleChange = (event) => {
         setInformation({
             ...information,
-            goal: event.target.value,
-            secondStep: true
+            goal: event.target.textContent,
+            secondStep: true,
+            openinput: false
         })
     }
 
@@ -181,6 +187,30 @@ const Calculator = () => {
         })
     }
 
+    const handleOpenInput = () => {
+        setInformation({
+            ...information,
+            openinput: true
+        })
+    }
+
+    const targetTaking = () => {
+        if(information.openinput === true) {
+            return(
+                <>
+                    <div className='calculator__option-credit' value='Ипотечное кредитование' onClick={handleChange}>
+                        <span className='calculator__option-text' value='Ипотечное кредитование'>Ипотечное кредитование</span>
+                    </div>
+                    <div className='calculator__option-avto' value='Автомобильное кредитование' onClick={handleChange}>
+                        <span className='calculator__option-text' value='Автомобильное кредитование'>Автомобильное кредитование</span>
+                    </div>
+                </>
+            )
+        }
+    }
+
+    const openInput = information.openinput === true ? 'calculator__select calculator__select--open' : 'calculator__select'
+
     const gratitudePopUp = () => {
         if(information.gratitude === true) {
             return(
@@ -218,10 +248,10 @@ const Calculator = () => {
                         <span className='form__text'>{orderingData.year + ' лет'}</span>
                         <span className='form__description'>Срок кредитования</span>
                     </div>
-                    <input className='form__input form__input--margin' required placeholder='ФИО' type='text'></input>
+                    <input className='form__input form__input--margin' ref={nameRef} required placeholder='ФИО' type='text'></input>
                     <div className='form__conteiner-inpute'>
-                        <input className='form__input' required placeholder='Телефон' type='tel'></input>
-                        <input className='form__input form__inpute--right' required placeholder='E-mail' type='email'></input>
+                        <input className='form__input' ref={mailRef} required placeholder='Телефон' type='tel'></input>
+                        <input className='form__input form__inpute--right' ref={telephoneRef} required placeholder='E-mail' type='email'></input>
                     </div>
                     <button className='form__button' type='submit'>Отправить</button>
                 </form>
@@ -307,11 +337,10 @@ const Calculator = () => {
             <div className='calculator__conteiner'>
                 <div className='calculator__box'>
                     <span className='calculator__text'>Шаг 1. Цель кредита</span>
-                    <select className='calculator__select' value={information.goal} onChange={handleChange}>
-                        <option className='calculator__option calculator__option--display'>Выберите цель кредита</option>
-                        <option value='Ипотечное кредитование' className='calculator__option'>Ипотечное кредитование</option>
-                        <option value='Автомобильное кредитование' className='calculator__option'>Автомобильное кредитование</option>
-                    </select>
+                    <div className={openInput} onClick={handleOpenInput}>
+                        <span className='calculator__select-text'>{information.goal}</span>
+                    </div>
+                    {targetTaking()}
                     {nextStep()}
                 </div>
                 {offerStep()}
