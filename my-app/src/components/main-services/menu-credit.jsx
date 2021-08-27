@@ -13,7 +13,7 @@ const Credit = () => {
             </div>
             <span className='service__content-text'>
                 {'Рассчитайте ежемесячный платеж\nи ставку по кредиту воспользовавшись\nнашим'}
-                <button className='service__text-button'>кредитным калькулятором</button>
+                <a href='*' className='service__text-button'>кредитным калькулятором</a>
             </span>
         </div>
     )

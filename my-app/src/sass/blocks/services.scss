@@ -67,6 +67,10 @@
     font-size: 14px;
     line-height: 16px;
     color: #F6F7FF;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .service__content-text {
@@ -98,7 +102,7 @@
     height: 78px;
 }
 
-.service__text-contener--fourth {
+.service__text-contener-fourth {
     height: 102px;
 }
 
@@ -213,7 +217,7 @@
         width: 320px;
     }
 
-    .service__text-contener--fourth {
+    .service__text-contener-fourth {
         height: 98px;
     }
 

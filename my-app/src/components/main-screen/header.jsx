@@ -26,10 +26,10 @@ const Header = (props) => {
     }
 
     const headerConteiner = menu === true ? 'header__conteiner header__conteiner-open' : 'header__conteiner';
-    const headerList = menu === true ? 'header__list header__list-open' : 'header__list';
+    const headerList = menu === true ? 'header__list header__list-open list' : 'header__list list';
     const listElement = menu === true ? 'list__element list__element-open' : 'list__element';
     const headerLogin = menu === true ? 'header__login header__login-open' : 'header__login';
-    const loginText = menu === true ? 'login__text login__text-open' : 'login__text';
+    const loginText = menu === true ? 'header__logintext header__logintext-open' : 'header__logintext';
     const closeButton = menu === true ? <button onClick={closeMenu} className='header__close header__close-open'></button> : '';
 
     return (
@@ -37,7 +37,7 @@ const Header = (props) => {
             <div className={headerConteiner}>
                 <div className='header__logomenu'>
                     <button onClick={openMenu} className='header__button' />
-                    <a href='*' className='header__logo'>
+                    <a href='*' className='header__logo logo'>
                         <picture className='logo__img'>
                             <source media='(min-width: 1024px)' srcSet={logoDesktop} />
                             <source media='(min-width: 768px)' srcSet={logoTablet} />

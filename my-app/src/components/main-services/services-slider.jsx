@@ -21,7 +21,7 @@ const ServiceSwiper = () => {
                         процентов на банковскую карту
                     </span>
                 </div>
-                <button className='service__button'>Узнать подробнее</button>
+                <a href='*' className='service__button'>Узнать подробнее</a>
             </SwiperSlide>
             <SwiperSlide className='service__container service__conteiner-car'>
                 <h3 className='service__title'>
@@ -34,7 +34,7 @@ const ServiceSwiper = () => {
                 </div>
                 <span className='service__content-text'>
                     {'Рассчитайте ежемесячный платеж\nи ставку по кредиту воспользовавшись\nнашим'}
-                    <button className='service__text-button'>кредитным калькулятором</button>
+                    <a href='*' className='service__text-button'>кредитным калькулятором</a>
                 </span>
             </SwiperSlide>
             <SwiperSlide className='service__container service__conteiner-lock'>
@@ -46,13 +46,13 @@ const ServiceSwiper = () => {
                     <span className='service__text'>Страхование жизни и здоровья</span>
                     <span className='service__text'>Страхование недвижимости</span>
                 </div>
-                <button className='service__button'>Узнать подробнее</button>
+                <a href='*' className='service__button'>Узнать подробнее</a>
             </SwiperSlide>
             <SwiperSlide className='service__container service__conteiner-telephone'>
                 <h3 className='service__title service__title--nowrap'>
                     {'Лига Банк — это огромное\nколичество онлайн-сервисов\nдля вашего удобства'}
                 </h3>
-                <div className='service__text-conteiner service__text-contener--fourth'>
+                <div className='service__text-conteiner service__text-contener-fourth'>
                     <span className='service__text'>
                         {'Мобильный банк,\nкоторый всегда под рукой'}
                     </span>
@@ -62,7 +62,7 @@ const ServiceSwiper = () => {
                         билеты по всему миру
                     </span>
                 </div>
-                <button className='service__button'>Узнать подробнее</button>
+                <a href='*' className='service__button'>Узнать подробнее</a>
             </SwiperSlide>
         </Swiper>
     )

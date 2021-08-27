@@ -42,7 +42,7 @@ const ServiceMenu = (props) => {
 
     return(
         <div className='service'>
-            <div className='service__menu'>
+            <div className='service__menu menu'>
                 <button className={activeButtonDeposit} onClick={selectedButtonDeposit}>
                     <img className='menu__vault' alt='иконка' src={iconVault} />
                     <span className='menu__text'>Вклады</span>

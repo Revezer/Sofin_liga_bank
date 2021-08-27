@@ -6,7 +6,7 @@ const Online = () => {
             <h3 className='service__title service__title--nowrap'>
                 {'Лига Банк — это огромное\nколичество онлайн-сервисов\nдля вашего удобства'}
             </h3>
-            <div className='service__text-conteiner service__text-contener--fourth'>
+            <div className='service__text-conteiner service__text-contener-fourth'>
                 <span className='service__text'>
                     {'Мобильный банк,\nкоторый всегда под рукой'}
                 </span>
@@ -16,7 +16,7 @@ const Online = () => {
                     билеты по всему миру
                 </span>
             </div>
-            <button className='service__button'>Узнать подробнее</button>
+            <a href='*' className='service__button'>Узнать подробнее</a>
         </div>
     )
 }

@@ -11,7 +11,7 @@ const Insurance = () => {
                 <span className='service__text'>Страхование жизни и здоровья</span>
                 <span className='service__text'>Страхование недвижимости</span>
             </div>
-            <button className='service__button'>Узнать подробнее</button>
+            <a href='*' className='service__button'>Узнать подробнее</a>
         </div>
     )
 }

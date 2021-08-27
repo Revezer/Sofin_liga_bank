@@ -15,7 +15,7 @@ const Deposits = () => {
                     процентов на банковскую карту
                 </span>
             </div>
-        <button className='service__button'>Узнать подробнее</button>
+        <a href='*' className='service__button'>Узнать подробнее</a>
         </div>
     )
 }

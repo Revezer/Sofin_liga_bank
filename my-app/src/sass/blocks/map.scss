@@ -1,4 +1,4 @@
-.map__title {
+.titleMap {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: bold;
@@ -17,7 +17,7 @@
 }
 
 @media (min-width: $tablet-width) {
-    .map__title {
+    .titleMap {
         margin-left: 46px;
         margin-top: 69px;
         font-size: 31px;
@@ -33,7 +33,7 @@
 }
 
 @media (min-width: $desktop-width) {
-    .map__title {
+    .titleMap {
         margin-left: 98px;
         margin-top: 99px;
         font-size: 40px;

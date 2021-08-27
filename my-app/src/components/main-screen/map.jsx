@@ -52,7 +52,7 @@ const Map = (props) => {
 
   return (
     <>
-      <span className='map__title'>Отделения Лига Банка</span>
+      <span className='titleMap'>Отделения Лига Банка</span>
       <div ref={mapRef} className='map'></div>
     </>
   );

@@ -154,7 +154,8 @@ const Calculator = () => {
 
     const checkCapital = information.capital === true ? 'calculator__textcapital calculator__textcapital--active' : 'calculator__textcapital'
 
-    const handleOrdering = () => {
+    const handleOrdering = (evt) => {
+        evt.preventDefault()
         setInformation({
             ...information,
             ordering: true
@@ -291,7 +292,7 @@ const Calculator = () => {
                                     <span className='offer__description'>Необходимый доход</span>
                                 </div>
                             </div>
-                            <button className='offer__button' onClick={handleOrdering}>Оформить заявку</button>
+                            <button className='offer__button' type='submit'>Оформить заявку</button>
                         </div>
                     </>
                 )
@@ -304,19 +305,22 @@ const Calculator = () => {
             return(
                 <>
                     <span className='calculator__text calculator__text--margin'>Шаг 2. Введите параметры кредита</span>
-                    <span className='calculator__clarification'>Стоимость недвижимости</span>
                     <div className='calculator__inputValue inputValue'>
                         <button className='inputValue__button inputValue__button--left' onClick={decreaseButton}></button>
+                        <label className='calculator__clarification'>Стоимость недвижимости
                         <input className='inputValue__input' value={information.propertyValue  + ' рублей'} onChange={handleChangePrice}></input>
+                        </label>
                         <button className='inputValue__button inputValue__button--right' onClick={zoomButton}></button>
                     </div>
                     <span className='calculator__options'>От 1 200 000  до 25 000 000 рублей</span>
-                    <span className='calculator__clarification calculator__clarification--margin'>Первоначальный взнос</span>
-                    <input className='calculator__contribution' value={information.anInitialFee + ' рублей'} onChange={changeInContribution} />
+                    <label className='calculator__clarification calculator__clarification--margin'>Первоначальный взнос
+                        <input className='calculator__contribution' value={information.anInitialFee + ' рублей'} onChange={changeInContribution} />
+                    </label>
                     <input className='calculator__slider' type="range" min="10" max="100" step="5" value={information.contribution} onChange={handleChangePercent} />
                     <span className='calculator__textcontribution'>{information.contribution + '%'}</span>
-                    <span className='calculator__textterm'>Срок кредитования</span>
-                    <input className='calculator__year' value={information.year + ' лет'} onChange={handleChangeOfYear} />
+                    <label className='calculator__textterm'>Срок кредитования
+                        <input className='calculator__year' value={information.year + ' лет'} onChange={handleChangeOfYear} />
+                    </label>
                     <input className='calculator__slider calculator__slider--margin' type="range" min="5" max="30" step="1" value={information.year} onChange={handleChangeYear} />
                     <div className='calculator__textconteiner'>
                         <span className='calculator__textyear'>5 лет</span>
@@ -332,7 +336,7 @@ const Calculator = () => {
     }
 
     return(
-        <div className='calculator'>
+        <form className='calculator' onSubmit={handleOrdering}>
             <h3 className='calculator__title'>Кредитный калькулятор</h3>
             <div className='calculator__conteiner'>
                 <div className='calculator__box'>
@@ -347,7 +351,7 @@ const Calculator = () => {
             </div>
             {clearanceStep()}
             {gratitudePopUp()}
-        </div>
+        </form>
     )
 }
 

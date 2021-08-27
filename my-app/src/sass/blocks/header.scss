@@ -139,11 +139,11 @@
     top: 18px;
 }
 
-.login__text {
+.header__logintext {
     display: none;
 }
 
-.login__text-open {
+.header__logintext-open {
     display: block;
 }
 
@@ -211,7 +211,7 @@
         white-space: nowrap;
     }
 
-    .login__text {
+    .header__logintext {
         display: block;
         margin-left: 0px;
         white-space: nowrap;
