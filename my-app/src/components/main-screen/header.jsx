@@ -3,7 +3,7 @@ import logoDesktop from '../../img/logo-desktop.svg';
 import logoTablet from '../../img/logo-tablet.svg';
 import logoMobile from '../../img/logo-mobile.svg';
 import {connect} from 'react-redux';
-import {menuToggle, switchLogin} from '../../store/action';
+import {menuToggle, setSwitchLogin} from '../../store/action';
 
 const Header = (props) => {
     const {menu, switchingMenu, switchingLogin} = props;
@@ -69,7 +69,7 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(menuToggle(mode))
     },
     switchingLogin(bool) {
-        dispatch(switchLogin(bool))
+        dispatch(setSwitchLogin(bool))
     }
 })
 

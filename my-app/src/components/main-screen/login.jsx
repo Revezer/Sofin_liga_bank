@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react'
 import loginImg from '../../img/login-img.svg';
-import {switchLogin} from '../../store/action';
+import {setSwitchLogin} from '../../store/action';
 import {connect} from 'react-redux';
 
 const Login = (props) => {
@@ -15,9 +15,9 @@ const Login = (props) => {
         switchingLogin(false)
     }
 
-    const handlerPassword = (evt) => {
+    const getHandlerPassword = (evt) => {
         evt.preventDefault()
-        if(show === true) {
+        if(show) {
             setShow(false)
         } else {
             setShow(true)
@@ -34,7 +34,7 @@ const Login = (props) => {
             <input ref={loginRef} className='login__input' type='login'></input>
             <span className='login__desc login__desc--margin'>Пароль</span>
             <input ref={passwordRef} className='login__input login__input--margin' type={showPassword}></input>
-            <button className='login__password' onClick={handlerPassword}></button>
+            <button className='login__password' onClick={getHandlerPassword}></button>
             <button className='login__button' type='submit'>Войти</button>
             <a className='login__link' href='*'>Забыли пароль?</a>
         </form>
@@ -43,7 +43,7 @@ const Login = (props) => {
 
 const mapDispatchToProps = (dispatch) => ({
     switchingLogin(bool) {
-        dispatch(switchLogin(bool))
+        dispatch(setSwitchLogin(bool))
     }
 })
 

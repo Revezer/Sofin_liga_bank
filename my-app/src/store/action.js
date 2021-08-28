@@ -10,7 +10,7 @@ export const menuToggle = (mode) => ({
     payload: mode
 });
 
-export const newWidth = (width) => ({
+export const setNewWidth = (width) => ({
     type: ActionType.CHANGE_WIDTH,
     payload: width
 });
@@ -20,7 +20,7 @@ export const selectedMenu = (selected) => ({
     payload: selected
 });
 
-export const switchLogin = (bool) => ({
+export const setSwitchLogin = (bool) => ({
     type: ActionType.SWITCH_LOGIN,
     payload: bool
 });

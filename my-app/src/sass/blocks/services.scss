@@ -4,7 +4,7 @@
 }
 
 .service__title {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -28,7 +28,7 @@
 }
 
 .service__text {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Arial', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -61,7 +61,7 @@
     border-radius: 4px;
     margin-top: 25px;
     margin-left: 15px;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -74,7 +74,7 @@
 }
 
 .service__content-text {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Arial', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -87,7 +87,7 @@
 }
 
 .service__text-button {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -272,6 +272,14 @@
         justify-content: center;
         color: #4C4B51;
         width: 33%;
+        font-family: 'Roboto', 'Arial', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        display: flex;
+        align-items: center;
+        position: relative;
     }
 
     .menu__button--active {
@@ -279,16 +287,30 @@
         background: #F6F7FF;
     }
 
-    .menu__text {
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 21px;
-        display: flex;
-        align-items: center;
-        padding-left: 12px;
+    .menu__button::before {
+        content: '';
+        width: 36px;
+        height: 34px;
+        background-repeat: no-repeat;
+        padding-right: 8px;
     }
+
+    .menu__button-deposit::before {
+        background-image: url('../../img/vault.svg');
+    }
+
+    .menu__button-credit::before {
+        background-image: url('../../img/cards.svg');
+    }
+
+    .menu__button-insurance::before {
+        background-image: url('../../img/security.svg');
+    }
+
+    .menu__button-online::before {
+        background-image: url('../../img/phone.svg');
+    }
+
 
     .menu__vault {
         width: 34px;

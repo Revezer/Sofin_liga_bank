@@ -1,8 +1,4 @@
 import React from 'react'
-import iconVault from '../../img/vault.svg'
-import iconCards from '../../img/cards.svg'
-import iconSecurity from '../../img/security.svg'
-import iconPhone from '../../img/phone.svg'
 import DepositsComponent from './menu-deposits'
 import CreditComponent from './menu-credit'
 import InsuranceComponent from './menu-insurance'
@@ -29,36 +25,24 @@ const ServiceMenu = (props) => {
         } 
     }
 
-    const selectedButtonDeposit = () => switchingMenu('deposit')
-    const selectedButtonCredit = () => switchingMenu('credit')
-    const selectedButtonInsurance = () => switchingMenu('insurance')
-    const selectedButtonOnline = () => switchingMenu('online')
+    const getSelectedButton = (evt) => {
+        console.log(evt.target.value)
+        switchingMenu(evt.target.value)
+    }
 
-    const activeButtonDeposit = selectedMenu === 'deposit' ? 'menu__button menu__button--active' : 'menu__button'
-    const activeButtonCredit = selectedMenu === 'credit' ? 'menu__button menu__button--active' : 'menu__button'
-    const activeButtonInsurance = selectedMenu === 'insurance' ? 'menu__button menu__button--active' : 'menu__button'
-    const activeButtonOnline = selectedMenu === 'online' ? 'menu__button menu__button--active' : 'menu__button'
+    const activeButtonDeposit = selectedMenu === 'deposit' ? 'menu__button menu__button-deposit menu__button--active' : 'menu__button menu__button-deposit'
+    const activeButtonCredit = selectedMenu === 'credit' ? 'menu__button menu__button-credit menu__button--active' : 'menu__button menu__button-credit'
+    const activeButtonInsurance = selectedMenu === 'insurance' ? 'menu__button menu__button-insurance menu__button--active' : 'menu__button menu__button-insurance'
+    const activeButtonOnline = selectedMenu === 'online' ? 'menu__button menu__button-online menu__button--active' : 'menu__button menu__button-online'
 
 
     return(
         <div className='service'>
             <div className='service__menu menu'>
-                <button className={activeButtonDeposit} onClick={selectedButtonDeposit}>
-                    <img className='menu__vault' alt='иконка' src={iconVault} />
-                    <span className='menu__text'>Вклады</span>
-                </button>
-                <button className={activeButtonCredit} onClick={selectedButtonCredit}>
-                    <img className='menu__cards' alt='иконка' src={iconCards} />
-                    <span className='menu__text'>Кредиты</span>
-                </button>
-                <button className={activeButtonInsurance} onClick={selectedButtonInsurance}>
-                    <img className='menu__security' alt='иконка' src={iconSecurity} />
-                    <span className='menu__text'>Страхование</span>
-                </button>
-                <button className={activeButtonOnline} onClick={selectedButtonOnline}>
-                    <img className='menu__phone' alt='иконка' src={iconPhone}/>
-                    <span className='menu__text'>Онлайн-сервисы</span>
-                </button>
+                <button className={activeButtonDeposit} value='deposit' onClick={getSelectedButton}>Вклады</button>
+                <button className={activeButtonCredit} value='credit' onClick={getSelectedButton}>Кредиты</button>
+                <button className={activeButtonInsurance} value='insurance' onClick={getSelectedButton}>Страхование</button>
+                <button className={activeButtonOnline} value='online' onClick={getSelectedButton}>Онлайн-сервисы</button>
             </div>
             {getInformationOutput(selectedMenu)}
         </div>
