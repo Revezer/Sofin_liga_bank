@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react'
 import loginImg from '../../img/login-img.svg';
 import {setSwitchLogin} from '../../store/action';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types'
 
 const Login = (props) => {
     const {switchingLogin} = props
@@ -11,11 +12,11 @@ const Login = (props) => {
 
     const [show, setShow] = useState(false)
 
-    const closeLogin = () => {
+    const onLoginClose = () => {
         switchingLogin(false)
     }
 
-    const getHandlerPassword = (evt) => {
+    const onPasswordShow = (evt) => {
         evt.preventDefault()
         if(show) {
             setShow(false)
@@ -29,16 +30,20 @@ const Login = (props) => {
     return(
         <form className='login'>
             <img className='login__img' src={loginImg} alt='логотип банка'></img>
-            <button className='login__esc' onClick={closeLogin}></button>
+            <button className='login__esc' onClick={onLoginClose}></button>
             <span className='login__desc'>Логин</span>
             <input ref={loginRef} className='login__input' type='login'></input>
             <span className='login__desc login__desc--margin'>Пароль</span>
             <input ref={passwordRef} className='login__input login__input--margin' type={showPassword}></input>
-            <button className='login__password' onClick={getHandlerPassword}></button>
+            <button className='login__password' onClick={onPasswordShow}></button>
             <button className='login__button' type='submit'>Войти</button>
             <a className='login__link' href='*'>Забыли пароль?</a>
         </form>
     )
+}
+
+Login.propTypes = {
+    switchingLogin: PropTypes.func.isRequired
 }
 
 const mapDispatchToProps = (dispatch) => ({

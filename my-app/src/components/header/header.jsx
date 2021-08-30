@@ -4,19 +4,20 @@ import logoTablet from '../../img/logo-tablet.svg';
 import logoMobile from '../../img/logo-mobile.svg';
 import {connect} from 'react-redux';
 import {menuToggle, setSwitchLogin} from '../../store/action';
+import PropTypes from 'prop-types'
 
 const Header = (props) => {
     const {menu, switchingMenu, switchingLogin} = props;
 
-    const openMenu = () => {
+    const onMenuOpen = () => {
         switchingMenu(true)
     }
 
-    const closeMenu = () => {
+    const onMenuClose = () => {
         switchingMenu(false)
     }
 
-    const openLogin = () => {
+    const onLoginOpen = () => {
         switchingLogin(true)
         window.onkeydown = (evt) => {
             if ( evt.keyCode === 27 ) {
@@ -30,13 +31,13 @@ const Header = (props) => {
     const listElement = menu === true ? 'list__element list__element-open' : 'list__element';
     const headerLogin = menu === true ? 'header__login header__login-open' : 'header__login';
     const loginText = menu === true ? 'header__logintext header__logintext-open' : 'header__logintext';
-    const closeButton = menu === true ? <button onClick={closeMenu} className='header__close header__close-open'></button> : '';
+    const closeButton = menu === true ? <button onClick={onMenuClose} className='header__close header__close-open'></button> : '';
 
     return (
         <header className='header'>
             <div className={headerConteiner}>
                 <div className='header__logomenu'>
-                    <button onClick={openMenu} className='header__button' />
+                    <button onClick={onMenuOpen} className='header__button' />
                     <a href='*' className='header__logo logo'>
                         <picture className='logo__img'>
                             <source media='(min-width: 1024px)' srcSet={logoDesktop} />
@@ -51,14 +52,20 @@ const Header = (props) => {
                     <li className={listElement}><a href='*' className='list__link'>Конвертер валют</a></li>
                     <li className={listElement}><a href='*' className='list__link'>Контакты</a></li>
                 </ul>
-                <button href='*' className={headerLogin} onClick={openLogin}>
+                <button href='*' className={headerLogin} onClick={onLoginOpen}>
                     <span className={loginText}>Войти в Интернет-банк</span>
                 </button>
                 {closeButton}
             </div>
         </header>
     )
-};
+}
+
+Header.propTypes = {
+    menu: PropTypes.bool.isRequired,
+    switchingMenu: PropTypes.func.isRequired,
+    switchingLogin: PropTypes.func.isRequired
+}
 
 const mapStateToProps = (state) => ({
     menu: state.menu

@@ -1,4 +1,7 @@
-import React, {useState, useRef} from 'react'
+import React, {useRef} from 'react'
+import {connect} from 'react-redux'
+import {setInformation} from '../../store/action'
+import PropTypes from 'prop-types'
 
 const maternalCapital = 470000
 
@@ -21,27 +24,14 @@ const MIN_CREDIT = 500000
 
 const orderingData = {}
 
-const Calculator = () => {
-
-    const [information, setInformation] = useState({
-        goal: 'Выберите цель кредита',
-        secondStep: false,
-        propertyValue: 2000000,
-        contribution: 10,
-        year: 5,
-        capital: false,
-        anInitialFee: 200000,
-        ordering: false,
-        applicationNumber: 1,
-        gratitude: false,
-        openinput: false
-    })
+const Calculator = (props) => {
+    const {information, setInformation} = props
 
     const nameRef = useRef()
     const mailRef = useRef()
     const telephoneRef = useRef()
 
-    const handleChange = (event) => {
+    const onInputValue = (event) => {
         setInformation({
             ...information,
             goal: event.target.textContent,
@@ -69,7 +59,7 @@ const Calculator = () => {
         }
     }
 
-    const decreaseButton = () => {
+    const onButtonDecrease = () => {
         setInformation({
             ...information,
             propertyValue: information.propertyValue - CHANGE_NUMBER
@@ -82,7 +72,7 @@ const Calculator = () => {
         }
     }
 
-    const zoomButton = () => {
+    const onButtonZoom = () => {
         setInformation({
             ...information,
             propertyValue: information.propertyValue + CHANGE_NUMBER
@@ -165,7 +155,7 @@ const Calculator = () => {
 
     const checkCapital = information.capital === true ? 'calculator__textcapital calculator__textcapital--active' : 'calculator__textcapital'
 
-    const handleOrdering = (evt) => {
+    const onOrderingHandle = (evt) => {
         evt.preventDefault()
         setInformation({
             ...information,
@@ -182,7 +172,7 @@ const Calculator = () => {
         };
     }
 
-    const submittingForm = (event) => {
+    const onFormSubmitting = (event) => {
         event.preventDefault()
         setInformation({
             ...information,
@@ -192,28 +182,28 @@ const Calculator = () => {
         })
     }
 
-    const closePopUp = () => {
+    const onPopUpClose = () => {
         setInformation({
             ...information,
             gratitude: false
         })
     }
 
-    const handleOpenInput = () => {
+    const onInputOpen = () => {
         setInformation({
             ...information,
             openinput: true
         })
     }
 
-    const targetTaking = () => {
+    const getElementTargetTaking = () => {
         if(information.openinput === true) {
             return(
                 <>
-                    <div className='calculator__option-credit' value='Ипотечное кредитование' onClick={handleChange}>
+                    <div className='calculator__option-credit' value='Ипотечное кредитование' onClick={onInputValue}>
                         <span className='calculator__option-text' value='Ипотечное кредитование'>Ипотечное кредитование</span>
                     </div>
-                    <div className='calculator__option-avto' value='Автомобильное кредитование' onClick={handleChange}>
+                    <div className='calculator__option-avto' value='Автомобильное кредитование' onClick={onInputValue}>
                         <span className='calculator__option-text' value='Автомобильное кредитование'>Автомобильное кредитование</span>
                     </div>
                 </>
@@ -223,22 +213,22 @@ const Calculator = () => {
 
     const getOpenInput = information.openinput === true ? 'calculator__select calculator__select--open' : 'calculator__select'
 
-    const getGratitudePopUp = () => {
+    const getElementGratitudePopUp = () => {
         if(information.gratitude === true) {
             return(
                 <div className='calculator__popup'>
                     <span className='popup__text'>Спасибо за обращение в наш банк.</span>
                     <span className='popup__notification'>Наш менеджер скоро свяжется с вами по указанному номеру телефона</span>
-                    <button className='popup__button' onClick={closePopUp}></button>
+                    <button className='popup__button' onClick={onPopUpClose}></button>
                 </div>
             )
         }
     }
 
-    const getClearanceStep = () => {
+    const getElementClearanceStep = () => {
         if(information.ordering === true) {
             return(
-                <form className='calculator__form form' onSubmit={submittingForm}>
+                <form className='calculator__form form' onSubmit={onFormSubmitting}>
                     <span className='form__text form__text--center'>Шаг 3. Оформление заявки</span>
                     <div className='form__conteiner'>
                         <span className='form__text form__text--margin'>{'№  ' + setTransformationNumber(orderingData.applicationNumber)}</span>
@@ -271,7 +261,7 @@ const Calculator = () => {
         }
     }
 
-    const getOfferStep = () => {
+    const getElementOfferStep = () => {
         if(information.secondStep === true) {
             if(getMortgageAmount() < MIN_CREDIT) {
                 return(
@@ -311,17 +301,17 @@ const Calculator = () => {
         }
     }
 
-    const getNextStep = () => {
+    const getElementNextStep = () => {
         if(information.secondStep === true) {
             return(
                 <>
                     <span className='calculator__text calculator__text--margin'>Шаг 2. Введите параметры кредита</span>
                     <div className='calculator__inputValue inputValue'>
-                        <button className='inputValue__button inputValue__button--left' onClick={decreaseButton}></button>
+                        <button className='inputValue__button inputValue__button--left' onClick={onButtonDecrease}></button>
                         <label className='calculator__clarification'>Стоимость недвижимости
                         <input className='inputValue__input' value={information.propertyValue  + ' рублей'} onChange={handleChangePrice}></input>
                         </label>
-                        <button className='inputValue__button inputValue__button--right' onClick={zoomButton}></button>
+                        <button className='inputValue__button inputValue__button--right' onClick={onButtonZoom}></button>
                     </div>
                     <span className='calculator__options'>От 1 200 000  до 25 000 000 рублей</span>
                     <label className='calculator__clarification calculator__clarification--margin'>Первоначальный взнос
@@ -347,23 +337,50 @@ const Calculator = () => {
     }
 
     return(
-        <form className='calculator' onSubmit={handleOrdering}>
+        <form className='calculator' onSubmit={onOrderingHandle}>
             <h3 className='calculator__title'>Кредитный калькулятор</h3>
             <div className='calculator__conteiner'>
                 <div className='calculator__box'>
                     <span className='calculator__text'>Шаг 1. Цель кредита</span>
-                    <div className={getOpenInput} onClick={handleOpenInput}>
+                    <div className={getOpenInput} onClick={onInputOpen}>
                         <span className='calculator__select-text'>{information.goal}</span>
                     </div>
-                    {targetTaking()}
-                    {getNextStep()}
+                    {getElementTargetTaking()}
+                    {getElementNextStep()}
                 </div>
-                {getOfferStep()}
+                {getElementOfferStep()}
             </div>
-            {getClearanceStep()}
-            {getGratitudePopUp()}
+            {getElementClearanceStep()}
+            {getElementGratitudePopUp()}
         </form>
     )
 }
 
-export default Calculator;
+Calculator.propTypes = {
+    information : PropTypes.shape({
+        goal: PropTypes.string.isRequired,
+        secondStep: PropTypes.bool.isRequired,
+        propertyValue: PropTypes.number.isRequired,
+        contribution: PropTypes.number.isRequired,
+        year: PropTypes.number.isRequired,
+        capital: PropTypes.bool.isRequired,
+        anInitialFee: PropTypes.number.isRequired,
+        ordering: PropTypes.bool.isRequired,
+        applicationNumber: PropTypes.number.isRequired,
+        gratitude: PropTypes.bool.isRequired,
+        openinput: PropTypes.bool.isRequired
+    }).isRequired,
+    setInformation : PropTypes.func.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    information: state.information
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    setInformation(info) {
+        dispatch(setInformation(info))
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calculator);

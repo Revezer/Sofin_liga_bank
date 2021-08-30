@@ -1,28 +1,32 @@
 import {ActionType} from './action';
 
 const initialState = {
+  information: {
+    goal: 'Выберите цель кредита',
+    secondStep: false,
+    propertyValue: 2000000,
+    contribution: 10,
+    year: 5,
+    capital: false,
+    anInitialFee: 200000,
+    ordering: false,
+    applicationNumber: 1,
+    gratitude: false,
+    openinput: false
+  },
   menu: false,
   width: 0,
   selectedMenu: 'deposit',
-  login: false,
-  points: [
-    {
-      latitude: 57.1522200,
-      longitude: 65.5272200
-    },
-    {
-      latitude: 54.9924400,
-      longitude: 73.3685900
-    },
-    {
-      latitude: 55.7887400,
-      longitude: 49.1221400
-    }
-  ]
+  login: false
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+      case ActionType.CHANGE_INFORMATION:
+        return {
+          ...state,
+          information: action.payload
+        };
       case ActionType.MENU_TOGGLE:
         return {
           ...state,

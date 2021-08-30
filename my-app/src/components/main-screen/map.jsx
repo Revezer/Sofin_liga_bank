@@ -2,7 +2,6 @@ import React, {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
 import "leaflet/dist/leaflet.css";
 import iconPoint from '../../img/location.svg';
-import {connect} from 'react-redux';
 
 const region = {
   "latitude": 55,
@@ -10,8 +9,22 @@ const region = {
   "zoom": `5`
 };
 
-const Map = (props) => {
-  const {points} = props
+const points = [
+  {
+    latitude: 57.1522200,
+    longitude: 65.5272200
+  },
+  {
+    latitude: 54.9924400,
+    longitude: 73.3685900
+  },
+  {
+    latitude: 55.7887400,
+    longitude: 49.1221400
+  }
+]
+
+const Map = () => {
 
   const mapRef = useRef();
 
@@ -58,8 +71,4 @@ const Map = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  points: state.points
-})
-
-export default connect(mapStateToProps, null)(Map);
+export default Map;

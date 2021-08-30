@@ -5,6 +5,7 @@ import InsuranceComponent from './menu-insurance'
 import OnlineComponent from './menu-online'
 import {connect} from 'react-redux'
 import {selectedMenu} from '../../store/action'
+import PropTypes from 'prop-types'
 
  
 const ServiceMenu = (props) => {
@@ -25,8 +26,7 @@ const ServiceMenu = (props) => {
         } 
     }
 
-    const getSelectedButton = (evt) => {
-        console.log(evt.target.value)
+    const onButtonSelected = (evt) => {
         switchingMenu(evt.target.value)
     }
 
@@ -39,14 +39,19 @@ const ServiceMenu = (props) => {
     return(
         <div className='service'>
             <div className='service__menu menu'>
-                <button className={activeButtonDeposit} value='deposit' onClick={getSelectedButton}>Вклады</button>
-                <button className={activeButtonCredit} value='credit' onClick={getSelectedButton}>Кредиты</button>
-                <button className={activeButtonInsurance} value='insurance' onClick={getSelectedButton}>Страхование</button>
-                <button className={activeButtonOnline} value='online' onClick={getSelectedButton}>Онлайн-сервисы</button>
+                <button className={activeButtonDeposit} value='deposit' onClick={onButtonSelected}>Вклады</button>
+                <button className={activeButtonCredit} value='credit' onClick={onButtonSelected}>Кредиты</button>
+                <button className={activeButtonInsurance} value='insurance' onClick={onButtonSelected}>Страхование</button>
+                <button className={activeButtonOnline} value='online' onClick={onButtonSelected}>Онлайн-сервисы</button>
             </div>
             {getInformationOutput(selectedMenu)}
         </div>
     )
+}
+
+ServiceMenu.propTypes = {
+    selectedMenu: PropTypes.string.isRequired,
+    switchingMenu: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
