@@ -261,43 +261,35 @@ const Calculator = (props) => {
         }
     }
 
-    const getElementOfferSwich = () => {
-        if(getMortgageAmount() < MIN_CREDIT) {
-            return(
-                <div className='calculator__inaccessibility inaccessibility'>
-                    <span className='inaccessibility__text'>Наш банк не выдаёт ипотечные кредиты меньше 200 000 рублей.</span>
-                    <span className='inaccessibility__description'>Попробуйте использовать другие параметры для расчёта.</span>
-                </div>
-            )
-        } else {
-            return(
-                <>
-                    <div className='calculator__offer offer'>
-                        <span className='offer__text offer__text--first'>Наше предложение</span>
-                        <div className='offer__block'>
-                            <div className='offer__conteiner'>
-                                <span className='offer__text offer__text--margin'>{getMortgageAmount() + ' рублей'}</span>
-                                <span className='offer__description'>Сумма ипотеки</span>
-                            </div>
-                            <div className='offer__conteiner offer__conteiner--tabletmargin'>
-                                <span className='offer__text'>{interestRate + '%'}</span>
-                                <span className='offer__description'>Процентная ставка</span>
-                            </div>
-                            <div className='offer__conteiner offer__conteiner--tablet'>
-                                <span className='offer__text'>{formula + ' рублей'}</span>
-                                <span className='offer__description'>Ежемесячный платеж</span>
-                            </div>
-                            <div className='offer__conteiner offer__conteiner--tablet offer__conteiner--tabletmargin'>
-                                <span className='offer__text'>{income + ' рублей'}</span>
-                                <span className='offer__description'>Необходимый доход</span>
-                            </div>
-                        </div>
-                        <button className='offer__button' type='submit'>Оформить заявку</button>
+    const getElementOfferSwich = () => getMortgageAmount() < MIN_CREDIT ? 
+        <div className='calculator__inaccessibility inaccessibility'>
+            <span className='inaccessibility__text'>Наш банк не выдаёт ипотечные кредиты меньше 200 000 рублей.</span>
+            <span className='inaccessibility__description'>Попробуйте использовать другие параметры для расчёта.</span>
+        </div> : 
+        <>
+            <div className='calculator__offer offer'>
+                <span className='offer__text offer__text--first'>Наше предложение</span>
+                <div className='offer__block'>
+                    <div className='offer__conteiner'>
+                        <span className='offer__text offer__text--margin'>{getMortgageAmount() + ' рублей'}</span>
+                        <span className='offer__description'>Сумма ипотеки</span>
                     </div>
-                </>
-            )
-        }
-    }
+                    <div className='offer__conteiner offer__conteiner--tabletmargin'>
+                        <span className='offer__text'>{interestRate + '%'}</span>
+                        <span className='offer__description'>Процентная ставка</span>
+                    </div>
+                    <div className='offer__conteiner offer__conteiner--tablet'>
+                        <span className='offer__text'>{formula + ' рублей'}</span>
+                        <span className='offer__description'>Ежемесячный платеж</span>
+                    </div>
+                    <div className='offer__conteiner offer__conteiner--tablet offer__conteiner--tabletmargin'>
+                        <span className='offer__text'>{income + ' рублей'}</span>
+                        <span className='offer__description'>Необходимый доход</span>
+                    </div>
+                </div>
+                <button className='offer__button' type='submit'>Оформить заявку</button>
+            </div>
+        </>
 
     const getElementOfferStep = () => information.secondStep ? getElementOfferSwich() : ''
 
