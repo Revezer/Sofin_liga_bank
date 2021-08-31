@@ -31,10 +31,10 @@ const Login = (props) => {
         <form className='login'>
             <img className='login__img' src={loginImg} alt='логотип банка'></img>
             <button className='login__esc' onClick={onLoginClose}></button>
-            <span className='login__desc'>Логин</span>
-            <input ref={loginRef} className='login__input' type='login'></input>
-            <span className='login__desc login__desc--margin'>Пароль</span>
-            <input ref={passwordRef} className='login__input login__input--margin' type={showPassword}></input>
+            <label className='login__desc' for='login'>Логин</label>
+            <input ref={loginRef} id='login' className='login__input' type='login'></input>
+            <label className='login__desc login__desc--margin' for='password'>Пароль</label>
+            <input ref={passwordRef} id='password' className='login__input login__input--margin' type={showPassword}></input>
             <button className='login__password' onClick={onPasswordShow}></button>
             <button className='login__button' type='submit'>Войти</button>
             <a className='login__link' href='*'>Забыли пароль?</a>
