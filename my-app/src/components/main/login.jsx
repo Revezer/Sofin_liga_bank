@@ -19,7 +19,7 @@ const Login = (props) => {
     const onPasswordShow = (evt) => {
         evt.preventDefault()
         if(show) {
-            setShow(false)
+            setShow(!show)
         } else {
             setShow(true)
         }

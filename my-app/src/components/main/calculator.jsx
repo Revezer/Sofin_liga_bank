@@ -197,7 +197,7 @@ const Calculator = (props) => {
     }
 
     const getElementTargetTaking = () => {
-        if(information.openinput === true) {
+        if(information.openinput) {
             return(
                 <>
                     <div className='calculator__option-credit' value='Ипотечное кредитование' onClick={onInputValue}>
@@ -214,7 +214,7 @@ const Calculator = (props) => {
     const getOpenInput = information.openinput === true ? 'calculator__select calculator__select--open' : 'calculator__select'
 
     const getElementGratitudePopUp = () => {
-        if(information.gratitude === true) {
+        if(information.gratitude) {
             return(
                 <div className='calculator__popup'>
                     <span className='popup__text'>Спасибо за обращение в наш банк.</span>
@@ -226,7 +226,7 @@ const Calculator = (props) => {
     }
 
     const getElementClearanceStep = () => {
-        if(information.ordering === true) {
+        if(information.ordering) {
             return(
                 <form className='calculator__form form' onSubmit={onFormSubmitting}>
                     <span className='form__text form__text--center'>Шаг 3. Оформление заявки</span>
@@ -261,48 +261,48 @@ const Calculator = (props) => {
         }
     }
 
-    const getElementOfferStep = () => {
-        if(information.secondStep === true) {
-            if(getMortgageAmount() < MIN_CREDIT) {
-                return(
-                    <div className='calculator__inaccessibility inaccessibility'>
-                        <span className='inaccessibility__text'>Наш банк не выдаёт ипотечные кредиты меньше 200 000 рублей.</span>
-                        <span className='inaccessibility__description'>Попробуйте использовать другие параметры для расчёта.</span>
-                    </div>
-                )
-            } else {
-                return(
-                    <>
-                        <div className='calculator__offer offer'>
-                            <span className='offer__text offer__text--first'>Наше предложение</span>
-                            <div className='offer__block'>
-                                <div className='offer__conteiner'>
-                                    <span className='offer__text offer__text--margin'>{getMortgageAmount() + ' рублей'}</span>
-                                    <span className='offer__description'>Сумма ипотеки</span>
-                                </div>
-                                <div className='offer__conteiner offer__conteiner--tabletmargin'>
-                                    <span className='offer__text'>{interestRate + '%'}</span>
-                                    <span className='offer__description'>Процентная ставка</span>
-                                </div>
-                                <div className='offer__conteiner offer__conteiner--tablet'>
-                                    <span className='offer__text'>{formula + ' рублей'}</span>
-                                    <span className='offer__description'>Ежемесячный платеж</span>
-                                </div>
-                                <div className='offer__conteiner offer__conteiner--tablet offer__conteiner--tabletmargin'>
-                                    <span className='offer__text'>{income + ' рублей'}</span>
-                                    <span className='offer__description'>Необходимый доход</span>
-                                </div>
+    const getElementOfferSwich = () => {
+        if(getMortgageAmount() < MIN_CREDIT) {
+            return(
+                <div className='calculator__inaccessibility inaccessibility'>
+                    <span className='inaccessibility__text'>Наш банк не выдаёт ипотечные кредиты меньше 200 000 рублей.</span>
+                    <span className='inaccessibility__description'>Попробуйте использовать другие параметры для расчёта.</span>
+                </div>
+            )
+        } else {
+            return(
+                <>
+                    <div className='calculator__offer offer'>
+                        <span className='offer__text offer__text--first'>Наше предложение</span>
+                        <div className='offer__block'>
+                            <div className='offer__conteiner'>
+                                <span className='offer__text offer__text--margin'>{getMortgageAmount() + ' рублей'}</span>
+                                <span className='offer__description'>Сумма ипотеки</span>
                             </div>
-                            <button className='offer__button' type='submit'>Оформить заявку</button>
+                            <div className='offer__conteiner offer__conteiner--tabletmargin'>
+                                <span className='offer__text'>{interestRate + '%'}</span>
+                                <span className='offer__description'>Процентная ставка</span>
+                            </div>
+                            <div className='offer__conteiner offer__conteiner--tablet'>
+                                <span className='offer__text'>{formula + ' рублей'}</span>
+                                <span className='offer__description'>Ежемесячный платеж</span>
+                            </div>
+                            <div className='offer__conteiner offer__conteiner--tablet offer__conteiner--tabletmargin'>
+                                <span className='offer__text'>{income + ' рублей'}</span>
+                                <span className='offer__description'>Необходимый доход</span>
+                            </div>
                         </div>
-                    </>
-                )
-            }
+                        <button className='offer__button' type='submit'>Оформить заявку</button>
+                    </div>
+                </>
+            )
         }
     }
 
+    const getElementOfferStep = () => information.secondStep === true ? getElementOfferSwich() : ''
+
     const getElementNextStep = () => {
-        if(information.secondStep === true) {
+        if(information.secondStep) {
             return(
                 <>
                     <span className='calculator__text calculator__text--margin'>Шаг 2. Введите параметры кредита</span>
