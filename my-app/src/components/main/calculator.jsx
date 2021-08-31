@@ -134,7 +134,7 @@ const Calculator = (props) => {
         }
     }
     
-    const getMortgageAmount = () => information.capital === true ? information.propertyValue - information.anInitialFee - maternalCapital : information.propertyValue - information.anInitialFee
+    const getMortgageAmount = () => information.capital ? information.propertyValue - information.anInitialFee - maternalCapital : information.propertyValue - information.anInitialFee
 
     const setTransformationNumber = (number) => {
         if(number > ZERO_NUMBER && number < TEN_NUMBER)
@@ -153,7 +153,7 @@ const Calculator = (props) => {
 
     const income = Math.ceil(formula * HUNDRED / REQUIRED_INCOME)
 
-    const checkCapital = information.capital === true ? 'calculator__textcapital calculator__textcapital--active' : 'calculator__textcapital'
+    const checkCapital = information.capital ? 'calculator__textcapital calculator__textcapital--active' : 'calculator__textcapital'
 
     const onOrdering = (evt) => {
         evt.preventDefault()
@@ -211,7 +211,7 @@ const Calculator = (props) => {
         }
     }
 
-    const getOpenInput = information.openinput === true ? 'calculator__select calculator__select--open' : 'calculator__select'
+    const getOpenInput = information.openinput ? 'calculator__select calculator__select--open' : 'calculator__select'
 
     const getElementGratitudePopUp = () => {
         if(information.gratitude) {
@@ -299,7 +299,7 @@ const Calculator = (props) => {
         }
     }
 
-    const getElementOfferStep = () => information.secondStep === true ? getElementOfferSwich() : ''
+    const getElementOfferStep = () => information.secondStep ? getElementOfferSwich() : ''
 
     const getElementNextStep = () => {
         if(information.secondStep) {

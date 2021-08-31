@@ -26,12 +26,12 @@ const Header = (props) => {
         }
     }
 
-    const headerConteiner = menu === true ? 'header__conteiner header__conteiner-open' : 'header__conteiner';
-    const headerList = menu === true ? 'header__list header__list-open list' : 'header__list list';
-    const listElement = menu === true ? 'list__element list__element-open' : 'list__element';
-    const headerLogin = menu === true ? 'header__login header__login-open' : 'header__login';
-    const loginText = menu === true ? 'header__logintext header__logintext-open' : 'header__logintext';
-    const closeButton = menu === true ? <button onClick={onMenuClose} className='header__close header__close-open'></button> : '';
+    const headerConteiner = menu ? 'header__conteiner header__conteiner-open' : 'header__conteiner';
+    const headerList = menu ? 'header__list header__list-open list' : 'header__list list';
+    const listElement = menu ? 'list__element list__element-open' : 'list__element';
+    const headerLogin = menu ? 'header__login header__login-open' : 'header__login';
+    const loginText = menu ? 'header__logintext header__logintext-open' : 'header__logintext';
+    const closeButton = menu ? <button onClick={onMenuClose} className='header__close header__close-open'></button> : '';
 
     return (
         <header className='header'>

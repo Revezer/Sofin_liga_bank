@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
 const Main = (props) => {
     const {login} = props
 
-    const examinationLogin = login === true ? <LoginComponent /> : ''
+    const examinationLogin = login ? <LoginComponent /> : ''
 
     return(
         <>

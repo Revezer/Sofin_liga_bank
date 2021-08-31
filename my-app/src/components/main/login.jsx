@@ -25,7 +25,7 @@ const Login = (props) => {
         }
     }
 
-    const showPassword = show === true ? 'text' : 'password'
+    const showPassword = show ? 'text' : 'password'
 
     return(
         <form className='login'>
