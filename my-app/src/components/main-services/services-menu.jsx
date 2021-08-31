@@ -38,11 +38,11 @@ const ServiceMenu = (props) => {
 
     return(
         <div className='service'>
-            <div className='service__menu menu'>
-                <button className={activeButtonDeposit} value='deposit' onClick={onButtonSelected}>Вклады</button>
-                <button className={activeButtonCredit} value='credit' onClick={onButtonSelected}>Кредиты</button>
-                <button className={activeButtonInsurance} value='insurance' onClick={onButtonSelected}>Страхование</button>
-                <button className={activeButtonOnline} value='online' onClick={onButtonSelected}>Онлайн-сервисы</button>
+            <div className='service__menu menu' onClick={onButtonSelected}>
+                <button className={activeButtonDeposit} value='deposit'>Вклады</button>
+                <button className={activeButtonCredit} value='credit'>Кредиты</button>
+                <button className={activeButtonInsurance} value='insurance'>Страхование</button>
+                <button className={activeButtonOnline} value='online'>Онлайн-сервисы</button>
             </div>
             {getInformationOutput(selectedMenu)}
         </div>
