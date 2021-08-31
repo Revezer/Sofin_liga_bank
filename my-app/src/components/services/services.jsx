@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import ServiceMenuComponent from '../main-services/services-menu';
-import ServiceSwiperComponent from '../main-services/services-slider';
+import ServiceMenuComponent from './services-menu';
+import ServiceSwiperComponent from './services-slider';
 
 const Services = () => {
 

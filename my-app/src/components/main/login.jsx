@@ -20,8 +20,6 @@ const Login = (props) => {
         evt.preventDefault()
         if(show) {
             setShow(!show)
-        } else {
-            setShow(true)
         }
     }
 
