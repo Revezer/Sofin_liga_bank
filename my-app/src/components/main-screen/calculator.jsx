@@ -40,7 +40,7 @@ const Calculator = (props) => {
         })
     }
 
-    const handleChangePrice = (event) => {
+    const onChangePrice = (event) => {
         setInformation({
             ...information,
             propertyValue: parseInt(event.target.value.match(/\d+/))
@@ -85,7 +85,7 @@ const Calculator = (props) => {
         }
     }
 
-    const handleChangePercent = (event) => {
+    const onChangePercent = (event) => {
         setInformation({
             ...information,
             contribution: event.target.value,
@@ -101,21 +101,21 @@ const Calculator = (props) => {
         })
     }
 
-    const handleChangeYear = (event) => {
+    const onChangeYear = (event) => {
         setInformation({
             ...information,
             year: event.target.value
         })
     }
 
-    const handleChangeCapital = (event) => {
+    const onChangeCapital = (event) => {
         setInformation({
             ...information,
             capital: event.target.checked
         })
     }
     
-    const handleChangeOfYear = (event) => {
+    const onChangeOfYear = (event) => {
         setInformation({
             ...information,
             year: parseInt(event.target.value.match(/\d+/))
@@ -155,7 +155,7 @@ const Calculator = (props) => {
 
     const checkCapital = information.capital === true ? 'calculator__textcapital calculator__textcapital--active' : 'calculator__textcapital'
 
-    const onOrderingHandle = (evt) => {
+    const onOrdering = (evt) => {
         evt.preventDefault()
         setInformation({
             ...information,
@@ -309,7 +309,7 @@ const Calculator = (props) => {
                     <div className='calculator__inputValue inputValue'>
                         <button className='inputValue__button inputValue__button--left' onClick={onButtonDecrease}></button>
                         <label className='calculator__clarification'>Стоимость недвижимости
-                        <input className='inputValue__input' value={information.propertyValue  + ' рублей'} onChange={handleChangePrice}></input>
+                        <input className='inputValue__input' value={information.propertyValue  + ' рублей'} onChange={onChangePrice}></input>
                         </label>
                         <button className='inputValue__button inputValue__button--right' onClick={onButtonZoom}></button>
                     </div>
@@ -317,18 +317,18 @@ const Calculator = (props) => {
                     <label className='calculator__clarification calculator__clarification--margin'>Первоначальный взнос
                         <input className='calculator__contribution' value={information.anInitialFee + ' рублей'} onChange={changeInContribution} />
                     </label>
-                    <input className='calculator__slider' type="range" min="10" max="100" step="5" value={information.contribution} onChange={handleChangePercent} />
+                    <input className='calculator__slider' type="range" min="10" max="100" step="5" value={information.contribution} onChange={onChangePercent} />
                     <span className='calculator__textcontribution'>{information.contribution + '%'}</span>
                     <label className='calculator__textterm'>Срок кредитования
-                        <input className='calculator__year' value={information.year + ' лет'} onChange={handleChangeOfYear} />
+                        <input className='calculator__year' value={information.year + ' лет'} onChange={onChangeOfYear} />
                     </label>
-                    <input className='calculator__slider calculator__slider--margin' type="range" min="5" max="30" step="1" value={information.year} onChange={handleChangeYear} />
+                    <input className='calculator__slider calculator__slider--margin' type="range" min="5" max="30" step="1" value={information.year} onChange={onChangeYear} />
                     <div className='calculator__textconteiner'>
                         <span className='calculator__textyear'>5 лет</span>
                         <span className='calculator__textyear'>30 лет</span>
                     </div>
                     <label className='calculator__conteinercapital'>
-                        <input className='calculator__inputcapital' type="checkbox" onChange={handleChangeCapital}/>
+                        <input className='calculator__inputcapital' type="checkbox" onChange={onChangeCapital}/>
                         <span className={checkCapital}>Использовать материнский капитал</span>
                     </label>
                 </>
@@ -337,7 +337,7 @@ const Calculator = (props) => {
     }
 
     return(
-        <form className='calculator' onSubmit={onOrderingHandle}>
+        <form className='calculator' onSubmit={onOrdering}>
             <h3 className='calculator__title'>Кредитный калькулятор</h3>
             <div className='calculator__conteiner'>
                 <div className='calculator__box'>

@@ -6,13 +6,13 @@ const Services = () => {
 
     const [size, setSize] = useState(window.innerWidth)
 
-    const handleResize = () => {
+    const onResize = () => {
         setSize(window.innerWidth)
     }
 
     useEffect(() => {
-        window.addEventListener('resize', handleResize)
-        return () => window.removeEventListener('resize', handleResize)
+        window.addEventListener('resize', onResize)
+        return () => window.removeEventListener('resize', onResize)
     }, [size])
 
     const adaptability = size >= 1024 ? <ServiceMenuComponent /> : <ServiceSwiperComponent />;
