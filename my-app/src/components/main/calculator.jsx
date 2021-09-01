@@ -16,11 +16,14 @@ const TEN_NUMBER = 10
 const THOUSAND_NUMBER = 1000
 const MAX_PROCENT = 9.40
 const MIN_PROCENT = 8.50
+const PROCENT_AVTO_TWO_ITEM = 3.50
+const PROCENT_AVTO_ONE_ITEM = 8.50
+const MIN_PROCENT_AVTO = 15
+const MAX_PROCENT_AVTO = 16
 const PROCENT_FIRST_DEPOSIT = 15
 const NUMBER_OF_MONTHS = 12
 const ONE = 1
 const REQUIRED_INCOME = 45
-const MIN_CREDIT = 500000
 
 const orderingData = {}
 
@@ -43,23 +46,19 @@ const Calculator = (props) => {
     const onChangePrice = (event) => {
         setInformation({
             ...information,
-            propertyValue: parseInt(event.target.value.match(/\d+/))
+            propertyValue: event.target.value
         })
-        if (parseInt(event.target.value.match(/\d+/)) < MIN_SUM) {
-            return setInformation({
-                ...information,
-                propetyValue: MIN_SUM
-            })
-        }
-        if (parseInt(event.target.value.match(/\d+/)) > MAX_SUM) {
-            return setInformation({
-                ...information,
-                propetyValue: MAX_SUM
-            })
+        let errorInput = document.getElementById('value')
+        if (event.target.validity.valid === false) {
+            errorInput.classList.add('input__error')
+        } else {
+            errorInput.classList.remove('input__error')
         }
     }
 
     const onButtonDecrease = () => {
+        let errorInput = document.getElementById('value')
+        errorInput.classList.remove('input__error')
         setInformation({
             ...information,
             propertyValue: information.propertyValue - CHANGE_NUMBER
@@ -70,13 +69,28 @@ const Calculator = (props) => {
                 propertyValue: MIN_SUM
             })
         }
+        if (information.propertyValue >= MAX_SUM) {
+            return setInformation({
+                ...information,
+                propertyValue: MAX_SUM
+            })
+        }
+        
     }
 
     const onButtonZoom = () => {
+        let errorInput = document.getElementById('value')
+        errorInput.classList.remove('input__error')
         setInformation({
             ...information,
             propertyValue: information.propertyValue + CHANGE_NUMBER
         })
+        if (information.propertyValue <= MIN_SUM) {
+            return setInformation({
+                ...information,
+                propertyValue: MIN_SUM
+            })
+        }
         if (information.propertyValue >= MAX_SUM) {
             return setInformation({
                 ...information,
@@ -96,9 +110,17 @@ const Calculator = (props) => {
     const changeInContribution = (event) => {
         setInformation({
             ...information,
-            contribution: (parseInt(event.target.value.match(/\d+/)) / information.propertyValue) * HUNDRED,
-            anInitialFee: parseInt(event.target.value.match(/\d+/))
+            contribution: (event.target.value / information.propertyValue) * HUNDRED,
+            anInitialFee: event.target.value
         })
+        let errorInput = document.getElementById('contribution')
+        console.log(minContributionCredit)
+        console.log(event.target.validity.valid)
+        if (event.target.validity.valid === false) {
+            errorInput.classList.add('input__error')
+        } else {
+            errorInput.classList.remove('input__error')
+        }
     }
 
     const onChangeYear = (event) => {
@@ -114,6 +136,21 @@ const Calculator = (props) => {
             capital: event.target.checked
         })
     }
+
+    const onChangeKasko = (event) => {
+        setInformation({
+            ...information,
+            kasko: event.target.checked
+        })
+    }
+
+    const onChangeInsurance = (event) => {
+        setInformation({
+            ...information,
+            insurance: event.target.checked
+        })
+    }
+
     
     const onChangeOfYear = (event) => {
         setInformation({
@@ -138,22 +175,38 @@ const Calculator = (props) => {
 
     const setTransformationNumber = (number) => {
         if(number > ZERO_NUMBER && number < TEN_NUMBER)
-             return "000" + number;
+            return "000" + number;
         else if(number >= TEN_NUMBER && number < HUNDRED)
-             return "00" + number;
+            return "00" + number;
         else if(number >= HUNDRED && number < THOUSAND_NUMBER)
-             return "0" + number;
-     }
-
-    const typeLoan = orderingData.goal === 'Ипотечное кредитование' ? 'Ипотека' : 'Автокредит'
+            return "0" + number;
+    }
 
     const interestRate = information.contribution < PROCENT_FIRST_DEPOSIT ? MAX_PROCENT : MIN_PROCENT
+    const interestRateAvto = () => {
+        if (information.kasko && information.insurance) {
+            return PROCENT_AVTO_TWO_ITEM
+        } else
+        if (information.kasko || information.insurance) {
+            return PROCENT_AVTO_ONE_ITEM
+        } else 
+        if (information.propertyValue > 2000000) {
+            return MIN_PROCENT_AVTO
+        } else {
+            return MAX_PROCENT_AVTO
+        }
+    }
 
-    const formula = Math.ceil((getMortgageAmount() * (interestRate / HUNDRED / NUMBER_OF_MONTHS)) / (ONE - (ONE / Math.pow(ONE + (interestRate / HUNDRED / NUMBER_OF_MONTHS), information.year * NUMBER_OF_MONTHS))))
+    const typeLoan = orderingData.goal === 'Ипотечное кредитование' ? 'Ипотека' : 'Автокредит'
+    const procentAnte = information.goal === 'Ипотечное кредитование' ? interestRate : interestRateAvto()
+
+    const formula = Math.ceil((getMortgageAmount() * (procentAnte / HUNDRED / NUMBER_OF_MONTHS)) / (ONE - (ONE / Math.pow(ONE + (procentAnte / HUNDRED / NUMBER_OF_MONTHS), information.year * NUMBER_OF_MONTHS))))
 
     const income = Math.ceil(formula * HUNDRED / REQUIRED_INCOME)
 
     const checkCapital = information.capital ? 'calculator__textcapital calculator__textcapital--active' : 'calculator__textcapital'
+    const checkKasko = information.kasko ? 'calculator__textcapital calculator__textcapital--active' : 'calculator__textcapital'
+    const checkInsurance = information.insurance ? 'calculator__textcapital calculator__textcapital--active' : 'calculator__textcapital'
 
     const onOrdering = (evt) => {
         evt.preventDefault()
@@ -170,6 +223,14 @@ const Calculator = (props) => {
                 })
             }
         };
+    }
+
+    const onErrorForm = () => {
+        if (!telephoneRef.current.value || !mailRef.current.value.value || !nameRef.current.value) {
+            let docForm = document.getElementById('form')
+            docForm.classList.remove('calculator__error');
+            docForm.classList.add('calculator__error');
+        } 
     }
 
     const onFormSubmitting = (event) => {
@@ -228,7 +289,7 @@ const Calculator = (props) => {
     const getElementClearanceStep = () => {
         if(information.ordering) {
             return(
-                <form className='calculator__form form' onSubmit={onFormSubmitting}>
+                <form className='calculator__form form' id='form' onSubmit={onFormSubmitting}>
                     <span className='form__text form__text--center'>Шаг 3. Оформление заявки</span>
                     <div className='form__conteiner'>
                         <span className='form__text form__text--margin'>{'№  ' + setTransformationNumber(orderingData.applicationNumber)}</span>
@@ -255,15 +316,15 @@ const Calculator = (props) => {
                         <input className='form__input' ref={mailRef} required placeholder='Телефон' type='tel'></input>
                         <input className='form__input form__inpute--right' ref={telephoneRef} required placeholder='E-mail' type='email'></input>
                     </div>
-                    <button className='form__button' type='submit'>Отправить</button>
+                    <button className='form__button' type='submit' onClick={onErrorForm}>Отправить</button>
                 </form>
             )
         }
     }
 
-    const getElementOfferSwich = () => getMortgageAmount() < MIN_CREDIT ? 
+    const getElementOfferSwich = () => getMortgageAmount() < minCredit ? 
         <div className='calculator__inaccessibility inaccessibility'>
-            <span className='inaccessibility__text'>Наш банк не выдаёт ипотечные кредиты меньше 200 000 рублей.</span>
+            <span className='inaccessibility__text'>Наш банк не выдаёт ипотечные кредиты меньше {minCredit} рублей.</span>
             <span className='inaccessibility__description'>Попробуйте использовать другие параметры для расчёта.</span>
         </div> : 
         <>
@@ -272,10 +333,10 @@ const Calculator = (props) => {
                 <div className='offer__block'>
                     <div className='offer__conteiner'>
                         <span className='offer__text offer__text--margin'>{getMortgageAmount() + ' рублей'}</span>
-                        <span className='offer__description'>Сумма ипотеки</span>
+                        <span className='offer__description'>{textCredit}</span>
                     </div>
                     <div className='offer__conteiner offer__conteiner--tabletmargin'>
-                        <span className='offer__text'>{interestRate + '%'}</span>
+                        <span className='offer__text'>{procentAnte + '%'}</span>
                         <span className='offer__description'>Процентная ставка</span>
                     </div>
                     <div className='offer__conteiner offer__conteiner--tablet'>
@@ -287,11 +348,38 @@ const Calculator = (props) => {
                         <span className='offer__description'>Необходимый доход</span>
                     </div>
                 </div>
-                <button className='offer__button' type='submit'>Оформить заявку</button>
+                <button className='offer__button' onClick={onOrdering}>Оформить заявку</button>
             </div>
         </>
 
     const getElementOfferStep = () => information.secondStep ? getElementOfferSwich() : ''
+
+    const minValue = information.goal === 'Ипотечное кредитование' ? '1200000' : '500000'
+    const maxValue = information.goal === 'Ипотечное кредитование' ? '25000000' : '5000000'
+    const goalСredit = information.goal === 'Ипотечное кредитование' ? 'Стоимость недвижимости' : 'Стоимость автомобиля'
+    const minContributionCredit = information.propertyValue * 0.10
+    const minContributionAvto = information.propertyValue * 0.20
+    const minContributionValue = information.goal === 'Ипотечное кредитование' ? minContributionCredit : minContributionAvto
+    const minSlider = information.goal === 'Ипотечное кредитование' ? 10 : 20
+    const minCredit = information.goal === 'Ипотечное кредитование' ? 500000 : 200000
+    const textCredit = information.goal === 'Ипотечное кредитование' ? 'Сумма ипотеки' : 'Сумма автокредита'
+
+    const getElementCheckBox = () => information.goal === 'Ипотечное кредитование' ? 
+        <label className='calculator__conteinercapital'>
+            <input className='calculator__inputcapital' type="checkbox" onChange={onChangeCapital}/>
+            <span className={checkCapital}>Использовать материнский капитал</span>
+        </label> :
+        <>
+            <label className='calculator__conteinercapital'>
+                <input className='calculator__inputcapital' type="checkbox" onChange={onChangeKasko}/>
+                <span className={checkKasko}>Оформить КАСКО в нашем банке</span>
+            </label>
+            <label className='calculator__conteinercapital'>
+                <input className='calculator__inputcapital' type="checkbox" onChange={onChangeInsurance}/>
+                <span className={checkInsurance}>Оформить Страхование жизни в нашем банке</span>
+            </label>
+        </>
+    
 
     const getElementNextStep = () => {
         if(information.secondStep) {
@@ -300,16 +388,22 @@ const Calculator = (props) => {
                     <span className='calculator__text calculator__text--margin'>Шаг 2. Введите параметры кредита</span>
                     <div className='calculator__inputValue inputValue'>
                         <button className='inputValue__button inputValue__button--left' onClick={onButtonDecrease}></button>
-                        <label className='calculator__clarification'>Стоимость недвижимости
-                        <input className='inputValue__input' value={information.propertyValue  + ' рублей'} onChange={onChangePrice}></input>
+                        <label className='calculator__clarification'>{goalСredit}
+                        <div className='inputValue__input' id='value'>
+                            <input className='inputValue__value' value={information.propertyValue} type='number' min={minValue} max={maxValue} onChange={onChangePrice}></input>
+                            <span>рублей</span>
+                        </div>
                         </label>
                         <button className='inputValue__button inputValue__button--right' onClick={onButtonZoom}></button>
                     </div>
-                    <span className='calculator__options'>От 1 200 000  до 25 000 000 рублей</span>
+                    <span className='calculator__options'>От {minValue}  до {maxValue} рублей</span>
                     <label className='calculator__clarification calculator__clarification--margin'>Первоначальный взнос
-                        <input className='calculator__contribution' value={information.anInitialFee + ' рублей'} onChange={changeInContribution} />
+                        <div className='calculator__contribution' id='contribution'>
+                            <input className='calculator__contribution-value' type='number' value={information.anInitialFee} min={minContributionValue} max={information.propertyValue} onChange={changeInContribution} />
+                            <span>рублей</span>
+                        </div>
                     </label>
-                    <input className='calculator__slider' type="range" min="10" max="100" step="5" value={information.contribution} onChange={onChangePercent} />
+                    <input className='calculator__slider' type="range" min={minSlider} max='100' step="5" value={information.contribution} onChange={onChangePercent} />
                     <span className='calculator__textcontribution'>{information.contribution + '%'}</span>
                     <label className='calculator__textterm'>Срок кредитования
                         <input className='calculator__year' value={information.year + ' лет'} onChange={onChangeOfYear} />
@@ -319,17 +413,14 @@ const Calculator = (props) => {
                         <span className='calculator__textyear'>5 лет</span>
                         <span className='calculator__textyear'>30 лет</span>
                     </div>
-                    <label className='calculator__conteinercapital'>
-                        <input className='calculator__inputcapital' type="checkbox" onChange={onChangeCapital}/>
-                        <span className={checkCapital}>Использовать материнский капитал</span>
-                    </label>
+                    {getElementCheckBox()}
                 </>
             )
         }
     }
 
     return(
-        <form className='calculator' onSubmit={onOrdering}>
+        <div className='calculator' id='calculator'>
             <h3 className='calculator__title'>Кредитный калькулятор</h3>
             <div className='calculator__conteiner'>
                 <div className='calculator__box'>
@@ -344,7 +435,7 @@ const Calculator = (props) => {
             </div>
             {getElementClearanceStep()}
             {getElementGratitudePopUp()}
-        </form>
+        </div>
     )
 }
 

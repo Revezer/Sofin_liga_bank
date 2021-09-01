@@ -66,7 +66,7 @@ const Map = () => {
   return (
     <>
       <span className='titleMap'>Отделения Лига Банка</span>
-      <div ref={mapRef} className='map'></div>
+      <div ref={mapRef} className='map' id='map'></div>
     </>
   );
 };

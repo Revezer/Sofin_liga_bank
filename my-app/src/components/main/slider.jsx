@@ -7,6 +7,18 @@ import cardsDesktop from '../../img/cards-desktop.png'
 SwiperCore.use([Autoplay, Pagination, Scrollbar]);
 
 const Slider = () => {
+
+    const onTransitionMap = (evt) => {
+        evt.preventDefault()
+        const map = document.getElementById('map')
+        map.scrollIntoView();
+    }
+
+    const onTransitionCalculator = (evt) => {
+        evt.preventDefault()
+        const calculator = document.getElementById('calculator')
+        calculator.scrollIntoView()
+    }
     
     return(
         <Swiper className='slider' loop={true} autoplay={{ delay: 4000 }} pagination={{ clickable: true }}>
@@ -14,7 +26,7 @@ const Slider = () => {
                 <div className='item__conteiner'>
                     <h2 className='item__title item__title-white'>Лига Банк</h2>
                     <p className='item__text item__text-white'>Кредиты на любой случай</p>
-                    <a href='*' className='item__button item__button-white'>Рассчитать кредит</a>
+                    <a href='*' onClick={onTransitionCalculator} className='item__button item__button-white'>Рассчитать кредит</a>
                 </div>
                 <picture>
                     <source media='(min-width: 1024px)' srcSet={cardsDesktop} />
@@ -31,7 +43,7 @@ const Slider = () => {
                 <div className='item__conteiner'>
                     <h2 className='item__title'>Лига Банк</h2>
                     <p className='item__text'>Всегда рядом</p>
-                    <a href='*' className='item__button'>Найти отделение</a>
+                    <a href='*' onClick={onTransitionMap} className='item__button'>Найти отделение</a>
                 </div>
             </SwiperSlide>
         </Swiper>

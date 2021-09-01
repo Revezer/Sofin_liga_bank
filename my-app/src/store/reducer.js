@@ -12,7 +12,9 @@ const initialState = {
     ordering: false,
     applicationNumber: 1,
     gratitude: false,
-    openinput: false
+    openinput: false,
+    kasko: false,
+    insurance : false
   },
   menu: false,
   width: 0,
