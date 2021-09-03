@@ -235,7 +235,7 @@ main {
 
     .header__logomenu {
         width: 150px;
-        margin-left: 0px;
+        margin-left: 98px;
         margin-top: 26px;
         margin-right: 0px;
     }
@@ -251,7 +251,7 @@ main {
     
     .header__login {
         width: 173px;
-        margin-right: 0px;
+        margin-right: 98px;
         margin-left: 0px;
     }
     
@@ -261,3 +261,17 @@ main {
     }    
 }
 
+@media (min-width: $desktop-width-ower) {
+    .header__conteiner {
+        justify-content: start;
+    }
+
+    .header__list {
+        margin-left: 109px;
+        width: 469px;
+    }
+
+    .header__login {
+        margin-left: 267px;
+    }
+}
