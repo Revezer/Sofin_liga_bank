@@ -1,5 +1,7 @@
-.body__conteiner {
-    max-width: 1900px;
+main {
+    max-width: 1366px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .openPopUp {
@@ -18,6 +20,7 @@
     min-height: 48px;
     justify-content: space-between;
     position: relative;
+    max-width: 1366px;
 }
 
 .header__conteiner-open {
@@ -211,8 +214,8 @@
 @media (min-width: $desktop-width) {
     .header__conteiner {
         height: 91px;
-        padding-left: 98px;
-        padding-right: 102px;
+        padding-left: 0;
+        padding-right: 0;
         justify-content: space-between;
     }
       

@@ -24,7 +24,7 @@
 
 .footer__boxs {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     flex-direction: column;
     margin-top: 10px;
     height: 179px;
@@ -56,8 +56,14 @@
 .footer__box {
     display: flex;
     flex-direction: column;
-    padding-left: 30px;
     height: 48px;
+    margin-top: 23px;
+    padding-left: 33px;
+}
+
+.footer__box--mobile {
+    margin-top: 0px;
+    padding-left: 30px;
 }
 
 .footer__link--mobile {
@@ -102,6 +108,7 @@
     justify-content: space-between;
     padding-left: 15px;
     padding-left: 0px;
+    margin-top: 25px;
 }
 
 .footer__link--mobile::before {
@@ -210,9 +217,10 @@
         width: auto;
         justify-content: space-between;
         flex-direction: row;
-        margin-left: 98px;
-        margin-right: 98px;
+        margin-left: auto;
+        margin-right: auto;
         height: 224px;
+        max-width: 1366px;
     }
 
     .footer__cont {
