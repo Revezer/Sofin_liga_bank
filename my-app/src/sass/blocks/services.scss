@@ -254,6 +254,12 @@
 }
 
 @media (min-width: $desktop-width) {
+    .service {
+        max-width: 1170px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .service__menu {
         padding-left: 98px;
         padding-right: 98px;
@@ -280,6 +286,10 @@
         display: flex;
         align-items: center;
         position: relative;
+    }
+
+    .menu__button:hover {
+        cursor: pointer;
     }
 
     .menu__button--active {

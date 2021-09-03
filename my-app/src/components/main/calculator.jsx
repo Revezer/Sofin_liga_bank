@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import {connect} from 'react-redux'
 import {setInformation} from '../../store/action'
 import PropTypes from 'prop-types'
@@ -34,6 +34,9 @@ const Calculator = (props) => {
     const mailRef = useRef()
     const telephoneRef = useRef()
 
+    const [buttonWork, setButtonWork] = useState(true)
+    const [errorValue, setErrorValue] = useState(true)
+
     const onInputValue = (event) => {
         setInformation({
             ...information,
@@ -49,10 +52,20 @@ const Calculator = (props) => {
             propertyValue: event.target.value
         })
         let errorInput = document.getElementById('value')
+        setButtonWork(true)
+        setErrorValue(true)
         if (event.target.validity.valid === false) {
             errorInput.classList.add('input__error')
         } else {
             errorInput.classList.remove('input__error')
+        }
+        if (event.target.validity.rangeOverflow) {
+            setButtonWork(false)
+            setErrorValue(false)
+        }      
+        if (event.target.validity.rangeUnderflow) {
+            setButtonWork(false)
+            setErrorValue(false)
         }
     }
 
@@ -121,6 +134,11 @@ const Calculator = (props) => {
         } else {
             errorInput.classList.remove('input__error')
         }
+        if (event.target.validity.rangeOverflow) {
+        }      
+        if (event.target.validity.rangeUnderflow) {
+        }
+      
     }
 
     const onChangeYear = (event) => {
@@ -222,7 +240,13 @@ const Calculator = (props) => {
                     ordering: false
                 })
             }
-        };
+        }
+        const form = document.getElementById('form')
+        form.classList.remove('calculator__form-disabled')
+        form.scrollIntoView()
+    }
+
+    const noEffect = () => {
     }
 
     const onErrorForm = () => {
@@ -235,6 +259,7 @@ const Calculator = (props) => {
 
     const onFormSubmitting = (event) => {
         event.preventDefault()
+        document.body.classList.add('openPopUp')
         setInformation({
             ...information,
             applicationNumber: information.applicationNumber + ONE,
@@ -244,6 +269,7 @@ const Calculator = (props) => {
     }
 
     const onPopUpClose = () => {
+        document.body.classList.remove('openPopUp')
         setInformation({
             ...information,
             gratitude: false
@@ -287,40 +313,40 @@ const Calculator = (props) => {
     }
 
     const getElementClearanceStep = () => {
-        if(information.ordering) {
-            return(
-                <form className='calculator__form form' id='form' onSubmit={onFormSubmitting}>
-                    <span className='form__text form__text--center'>Шаг 3. Оформление заявки</span>
-                    <div className='form__conteiner'>
-                        <span className='form__text form__text--margin'>{'№  ' + setTransformationNumber(orderingData.applicationNumber)}</span>
-                        <span className='form__description'>Номер заявки</span>
-                    </div>
-                    <div className='form__conteiner'>
-                        <span className='form__text'>{typeLoan}</span>
-                        <span className='form__description'>Цель кредита</span>
-                    </div>
-                    <div  className='form__conteiner'>
-                        <span className='form__text'>{orderingData.propertyValue + ' рублей'}</span>
-                        <span className='form__description'>Стоимость недвижимости</span>
-                    </div>
-                    <div  className='form__conteiner'>
-                        <span className='form__text'>{orderingData.anInitialFee + ' рублей'}</span>
-                        <span className='form__description'>Первоначальный взнос</span>
-                    </div>
-                    <div  className='form__conteiner'>
-                        <span className='form__text'>{orderingData.year + ' лет'}</span>
-                        <span className='form__description'>Срок кредитования</span>
-                    </div>
-                    <input className='form__input form__input--margin' ref={nameRef} required placeholder='ФИО' type='text'></input>
-                    <div className='form__conteiner-inpute'>
-                        <input className='form__input' ref={mailRef} required placeholder='Телефон' type='tel'></input>
-                        <input className='form__input form__inpute--right' ref={telephoneRef} required placeholder='E-mail' type='email'></input>
-                    </div>
-                    <button className='form__button' type='submit' onClick={onErrorForm}>Отправить</button>
-                </form>
-            )
-        }
+        return(
+            <form className='calculator__form form calculator__form-disabled' id='form' onSubmit={onFormSubmitting}>
+                <span className='form__text form__text--center'>Шаг 3. Оформление заявки</span>
+                <div className='form__conteiner'>
+                    <span className='form__text form__text--margin'>{'№  ' + setTransformationNumber(orderingData.applicationNumber)}</span>
+                    <span className='form__description'>Номер заявки</span>
+                </div>
+                <div className='form__conteiner'>
+                    <span className='form__text'>{typeLoan}</span>
+                    <span className='form__description'>Цель кредита</span>
+                </div>
+                <div  className='form__conteiner'>
+                    <span className='form__text'>{orderingData.propertyValue + ' рублей'}</span>
+                    <span className='form__description'>{textЕargetСost}</span>
+                </div>
+                <div  className='form__conteiner'>
+                    <span className='form__text'>{orderingData.anInitialFee + ' рублей'}</span>
+                    <span className='form__description'>Первоначальный взнос</span>
+                </div>
+                <div  className='form__conteiner'>
+                    <span className='form__text'>{orderingData.year + ' лет'}</span>
+                    <span className='form__description'>Срок кредитования</span>
+                </div>
+                <input className='form__input form__input--margin' ref={nameRef} required placeholder='ФИО' type='text'></input>
+                <div className='form__conteiner-inpute'>
+                    <input className='form__input' ref={mailRef} required placeholder='Телефон' type='tel'></input>
+                    <input className='form__input form__inpute--right' ref={telephoneRef} required placeholder='E-mail' type='email'></input>
+                </div>
+                <button className='form__button' type='submit' onClick={onErrorForm}>Отправить</button>
+            </form>
+        )
     }
+
+    const swichOrdering = buttonWork === true ? onOrdering : noEffect
 
     const getElementOfferSwich = () => getMortgageAmount() < minCredit ? 
         <div className='calculator__inaccessibility inaccessibility'>
@@ -348,7 +374,7 @@ const Calculator = (props) => {
                         <span className='offer__description'>Необходимый доход</span>
                     </div>
                 </div>
-                <button className='offer__button' onClick={onOrdering}>Оформить заявку</button>
+                <button className='offer__button' onClick={swichOrdering}>Оформить заявку</button>
             </div>
         </>
 
@@ -363,6 +389,8 @@ const Calculator = (props) => {
     const minSlider = information.goal === 'Ипотечное кредитование' ? 10 : 20
     const minCredit = information.goal === 'Ипотечное кредитование' ? 500000 : 200000
     const textCredit = information.goal === 'Ипотечное кредитование' ? 'Сумма ипотеки' : 'Сумма автокредита'
+    const textЕargetСost = information.goal === 'Ипотечное кредитование' ? 'Стоимость недвижимости' : 'Стоимость автомобиля'
+    const errorValueText = errorValue ? 'inputValue__text inputValue__text--disabled' : 'inputValue__text'
 
     const getElementCheckBox = () => information.goal === 'Ипотечное кредитование' ? 
         <label className='calculator__conteinercapital'>
@@ -389,10 +417,11 @@ const Calculator = (props) => {
                     <div className='calculator__inputValue inputValue'>
                         <button className='inputValue__button inputValue__button--left' onClick={onButtonDecrease}></button>
                         <label className='calculator__clarification'>{goalСredit}
-                        <div className='inputValue__input' id='value'>
-                            <input className='inputValue__value' value={information.propertyValue} type='number' min={minValue} max={maxValue} onChange={onChangePrice}></input>
-                            <span>рублей</span>
-                        </div>
+                            <div className='inputValue__input' id='value'>
+                                <span className={errorValueText}>Некорректное значение</span>
+                                <input className='inputValue__value' value={information.propertyValue} type='number' min={minValue} max={maxValue} onChange={onChangePrice}></input>
+                                <span>рублей</span>
+                            </div>
                         </label>
                         <button className='inputValue__button inputValue__button--right' onClick={onButtonZoom}></button>
                     </div>

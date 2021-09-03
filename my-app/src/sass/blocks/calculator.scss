@@ -52,6 +52,10 @@
     position: relative;
 }
 
+.calculator__select:hover {
+    cursor: pointer;
+}
+
 .calculator__select::before {
     content: '';
     position: absolute;
@@ -82,6 +86,10 @@
     border-bottom: solid 1px #C1C2CA;
 }
 
+.calculator__option-credit:hover {
+    cursor: pointer;
+}
+
 .calculator__option-avto {
     width: 100%;
     height: 60px;
@@ -91,6 +99,10 @@
     border-bottom: solid 1px #1F1E25;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
+}
+
+.calculator__option-avto:hover {
+    cursor: pointer;
 }
 
 .calculator__option-text {
@@ -140,6 +152,10 @@
     background-position: center;
 }
 
+.inputValue__button:hover {
+    cursor: pointer;
+}
+
 .inputValue__value, .calculator__contribution-value {
     border: none;
     width: 75px;
@@ -164,6 +180,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.inputValue__text {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 140%;
+    color: black;
+    position: absolute;
+    top: 14px;
+    right: 1px;
+}
+
+.inputValue__text--disabled {
+    display: none;
 }
 
 .inputValue__button--left {
@@ -315,6 +347,10 @@
     position: relative;
 }
 
+.calculator__textcapital:hover {
+    cursor: pointer;
+}
+
 .calculator__inputcapital {
     display: none;
 }
@@ -398,6 +434,10 @@
     margin-left: 15px;
 }
 
+.offer__button:hover {
+    cursor: pointer;
+}
+
 .calculator__inaccessibility {
     margin-top: 29px;
     width: 290px;
@@ -437,6 +477,10 @@
     display: flex;
     flex-direction: column;
     margin-top: 15px;
+}
+
+.calculator__form-disabled {
+    display: none;
 }
 
 .form__text {
@@ -515,6 +559,10 @@
     font-size: 14px;
     line-height: 140%;
     color: #F6F7FF;
+}
+
+.form__button:hover {
+    cursor: pointer;
 }
 
 .calculator__popup {
@@ -853,7 +901,7 @@ input[type="number"] {
 
 @media (min-width: $desktop-width) {
     .calculator {
-        width: 1170px;
+        width: 100%;
         margin-top: 108px;
     }
 

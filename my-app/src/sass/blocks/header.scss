@@ -1,5 +1,9 @@
-.body {
+.body__conteiner {
     max-width: 1900px;
+}
+
+.openPopUp {
+    overflow: hidden;
 }
 
 .header {
@@ -18,6 +22,10 @@
 
 .header__conteiner-open {
     flex-direction: column;
+    position: absolute;
+    top: 0;
+    z-index: 3;
+    background: white;
 }
 
 .header__logomenu {
@@ -118,6 +126,7 @@
     margin-left: 16px;
     margin-right: 16px;
     margin-bottom: 48px;
+    background: white;
 }
 
 .header__login::before {
@@ -202,6 +211,8 @@
 @media (min-width: $desktop-width) {
     .header__conteiner {
         height: 91px;
+        padding-left: 98px;
+        padding-right: 102px;
         justify-content: space-between;
     }
       
@@ -209,6 +220,8 @@
         margin-left: 0;
         margin-top: 36px;
         white-space: nowrap;
+        flex-grow: 0;
+        width: 421px;
     }
 
     .header__logintext {
@@ -219,9 +232,9 @@
 
     .header__logomenu {
         width: 150px;
-        margin-left: 97px;
+        margin-left: 0px;
         margin-top: 26px;
-        margin-right: 109px;
+        margin-right: 0px;
     }
       
     .logo__img {
@@ -235,8 +248,8 @@
     
     .header__login {
         width: 173px;
-        margin-right: 98px;
-        margin-left: 19.5%;
+        margin-right: 0px;
+        margin-left: 0px;
     }
     
     .header__login::before {

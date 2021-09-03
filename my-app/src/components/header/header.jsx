@@ -18,10 +18,12 @@ const Header = (props) => {
     }
 
     const onLoginOpen = () => {
+        document.body.classList.add('openPopUp')
         switchingLogin(true)
         window.onkeydown = (evt) => {
             if ( evt.keyCode === 27 ) {
                 switchingLogin(false)
+                document.body.classList.remove('openPopUp')
             }
         }
     }

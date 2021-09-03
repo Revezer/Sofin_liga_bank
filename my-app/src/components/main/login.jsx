@@ -14,6 +14,7 @@ const Login = (props) => {
 
     const onLoginClose = () => {
         switchingLogin(false)
+        document.body.classList.remove('openPopUp')
     }
 
     const onPasswordShow = (evt) => {
@@ -30,9 +31,9 @@ const Login = (props) => {
             <img className='login__img' src={loginImg} alt='логотип банка'></img>
             <button className='login__esc' onClick={onLoginClose}></button>
             <label className='login__desc' for='login'>Логин</label>
-            <input ref={loginRef} id='login' className='login__input' type='login'></input>
+            <input ref={loginRef} id='login' className='login__input' required type='login'></input>
             <label className='login__desc login__desc--margin' for='password'>Пароль</label>
-            <input ref={passwordRef} id='password' className='login__input login__input--margin' type={showPassword}></input>
+            <input ref={passwordRef} id='password' className='login__input login__input--margin' required type={showPassword}></input>
             <button className='login__password' onClick={onPasswordShow}></button>
             <button className='login__button' type='submit'>Войти</button>
             <a className='login__link' href='*'>Забыли пароль?</a>
