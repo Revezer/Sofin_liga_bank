@@ -327,7 +327,7 @@ const Calculator = (props) => {
                     <span className='form__description'>Первоначальный взнос</span>
                 </div>
                 <div  className='form__conteiner'>
-                    <span className='form__text'>{orderingData.year + ' лет'}</span>
+                    <span className='form__text'>{textAge(orderingData.year)}</span>
                     <span className='form__description'>Срок кредитования</span>
                 </div>
                 <input className='form__input form__input--margin' ref={nameRef} required placeholder='ФИО' type='text'></input>
@@ -409,6 +409,25 @@ const Calculator = (props) => {
     const inputValueClass = errorValue ? 'inputValue__input input__error' : 'inputValue__input'
     const onputContributionClass = errorContribution ? 'calculator__contribution input__error' : 'calculator__contribution'
 
+    const textAge = (age) => {
+        let text;
+        let count = age % 100;
+        if (count >= 5 && count <= 20) {
+            text = 'лет';
+        } else {
+            count = count % 10;
+            if (count === 1) {
+                text = 'год';
+            } else if (count >= 2 && count <= 4) {
+                text = 'года';
+            } else {
+                text = 'лет';
+            }
+        }
+        return age + ' ' + text;
+    }
+    
+
     const getElementNextStep = () => {
         if(information.secondStep) {
             return(
@@ -435,7 +454,7 @@ const Calculator = (props) => {
                     <input className='calculator__slider' type="range" min={minSlider} max='100' step="5" value={information.contribution} onChange={onChangePercent} />
                     <span className='calculator__textcontribution'>{information.contribution + '%'}</span>
                     <label className='calculator__textterm'>Срок кредитования
-                        <input className='calculator__year' value={information.year + ' лет'} onChange={onChangeOfYear} />
+                        <input className='calculator__year' value={textAge(information.year)} onChange={onChangeOfYear} />
                     </label>
                     <input className='calculator__slider calculator__slider--margin' type="range" min="5" max="30" step="1" value={information.year} onChange={onChangeYear} />
                     <div className='calculator__textconteiner'>
