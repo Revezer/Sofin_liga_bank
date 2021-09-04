@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react'
 import {connect} from 'react-redux'
 import {setInformation} from '../../store/action'
 import PropTypes from 'prop-types'
+import InputMask from 'react-input-mask'
 
 const maternalCapital = 470000
 
@@ -25,7 +26,10 @@ const NUMBER_OF_MONTHS = 12
 const ONE = 1
 const REQUIRED_INCOME = 45
 
-const orderingData = {}
+const orderingData = {
+    propertyValue: 2,
+    anInitialFee: 2
+}
 
 const Calculator = (props) => {
     const {information, setInformation} = props
@@ -34,8 +38,9 @@ const Calculator = (props) => {
     const mailRef = useRef()
     const telephoneRef = useRef()
 
-    const [buttonWork, setButtonWork] = useState(true)
-    const [errorValue, setErrorValue] = useState(true)
+    const [buttonWork, setButtonWork] = useState(false)
+    const [errorValue, setErrorValue] = useState(false)
+    const [errorContribution, setErrorContribution] = useState(false)
 
     const onInputValue = (event) => {
         setInformation({
@@ -49,23 +54,17 @@ const Calculator = (props) => {
     const onChangePrice = (event) => {
         setInformation({
             ...information,
-            propertyValue: event.target.value
+            propertyValue: Number(event.target.value.replace(/\s/g, '')),
+            anInitialFee: Number(event.target.value.replace(/\s/g, '')) * (information.contribution / HUNDRED)
+
         })
-        let errorInput = document.getElementById('value')
         setButtonWork(true)
         setErrorValue(true)
-        if (event.target.validity.valid === false) {
-            errorInput.classList.add('input__error')
-        } else {
-            errorInput.classList.remove('input__error')
-        }
-        if (event.target.validity.rangeOverflow) {
-            setButtonWork(false)
-            setErrorValue(false)
-        }      
-        if (event.target.validity.rangeUnderflow) {
-            setButtonWork(false)
-            setErrorValue(false)
+        if (Number(event.target.value.replace(/\s/g, '')) > minValue) {
+            if (Number(event.target.value.replace(/\s/g, '')) < maxValue) {
+                setButtonWork(false)
+                setErrorValue(false)
+            }
         }
     }
 
@@ -123,22 +122,17 @@ const Calculator = (props) => {
     const changeInContribution = (event) => {
         setInformation({
             ...information,
-            contribution: (event.target.value / information.propertyValue) * HUNDRED,
-            anInitialFee: event.target.value
+            contribution: (event.target.value.replace(/\s/g, '') / information.propertyValue) * HUNDRED,
+            anInitialFee: event.target.value.replace(/\s/g, '')
         })
-        let errorInput = document.getElementById('contribution')
-        console.log(minContributionCredit)
-        console.log(event.target.validity.valid)
-        if (event.target.validity.valid === false) {
-            errorInput.classList.add('input__error')
-        } else {
-            errorInput.classList.remove('input__error')
+        setButtonWork(true)
+        setErrorContribution(true)
+        if (Number(event.target.value.replace(/\s/g, '')) > minContributionValue) {
+            if (Number(event.target.value.replace(/\s/g, '')) < information.propertyValue) {
+                setButtonWork(false)
+                setErrorContribution(false)
+            }
         }
-        if (event.target.validity.rangeOverflow) {
-        }      
-        if (event.target.validity.rangeUnderflow) {
-        }
-      
     }
 
     const onChangeYear = (event) => {
@@ -325,11 +319,11 @@ const Calculator = (props) => {
                     <span className='form__description'>Цель кредита</span>
                 </div>
                 <div  className='form__conteiner'>
-                    <span className='form__text'>{orderingData.propertyValue + ' рублей'}</span>
+                    <span className='form__text'>{numberWithSpaces(orderingData.propertyValue) + ' рублей'}</span>
                     <span className='form__description'>{textЕargetСost}</span>
                 </div>
                 <div  className='form__conteiner'>
-                    <span className='form__text'>{orderingData.anInitialFee + ' рублей'}</span>
+                    <span className='form__text'>{numberWithSpaces(orderingData.anInitialFee) + ' рублей'}</span>
                     <span className='form__description'>Первоначальный взнос</span>
                 </div>
                 <div  className='form__conteiner'>
@@ -338,7 +332,7 @@ const Calculator = (props) => {
                 </div>
                 <input className='form__input form__input--margin' ref={nameRef} required placeholder='ФИО' type='text'></input>
                 <div className='form__conteiner-inpute'>
-                    <input className='form__input' ref={mailRef} required placeholder='Телефон' type='tel'></input>
+                    <InputMask mask="+7(999) 999 99 99" maskChar=" " className='form__input' ref={mailRef} required placeholder='Телефон' />
                     <input className='form__input form__inpute--right' ref={telephoneRef} required placeholder='E-mail' type='email'></input>
                 </div>
                 <button className='form__button' type='submit' onClick={onErrorForm}>Отправить</button>
@@ -346,7 +340,7 @@ const Calculator = (props) => {
         )
     }
 
-    const swichOrdering = buttonWork === true ? onOrdering : noEffect
+    const swichOrdering = buttonWork === true ? noEffect : onOrdering
 
     const getElementOfferSwich = () => getMortgageAmount() < minCredit ? 
         <div className='calculator__inaccessibility inaccessibility'>
@@ -358,7 +352,7 @@ const Calculator = (props) => {
                 <span className='offer__text offer__text--first'>Наше предложение</span>
                 <div className='offer__block'>
                     <div className='offer__conteiner'>
-                        <span className='offer__text offer__text--margin'>{getMortgageAmount() + ' рублей'}</span>
+                        <span className='offer__text offer__text--margin'>{numberWithSpaces(getMortgageAmount()) + ' рублей'}</span>
                         <span className='offer__description'>{textCredit}</span>
                     </div>
                     <div className='offer__conteiner offer__conteiner--tabletmargin'>
@@ -366,11 +360,11 @@ const Calculator = (props) => {
                         <span className='offer__description'>Процентная ставка</span>
                     </div>
                     <div className='offer__conteiner offer__conteiner--tablet'>
-                        <span className='offer__text'>{formula + ' рублей'}</span>
+                        <span className='offer__text'>{numberWithSpaces(formula) + ' рублей'}</span>
                         <span className='offer__description'>Ежемесячный платеж</span>
                     </div>
                     <div className='offer__conteiner offer__conteiner--tablet offer__conteiner--tabletmargin'>
-                        <span className='offer__text'>{income + ' рублей'}</span>
+                        <span className='offer__text'>{numberWithSpaces(income) + ' рублей'}</span>
                         <span className='offer__description'>Необходимый доход</span>
                     </div>
                 </div>
@@ -390,7 +384,7 @@ const Calculator = (props) => {
     const minCredit = information.goal === 'Ипотечное кредитование' ? 500000 : 200000
     const textCredit = information.goal === 'Ипотечное кредитование' ? 'Сумма ипотеки' : 'Сумма автокредита'
     const textЕargetСost = information.goal === 'Ипотечное кредитование' ? 'Стоимость недвижимости' : 'Стоимость автомобиля'
-    const errorValueText = errorValue ? 'inputValue__text inputValue__text--disabled' : 'inputValue__text'
+    const errorValueText = errorValue ? 'inputValue__text' : 'inputValue__text inputValue__text--disabled'
 
     const getElementCheckBox = () => information.goal === 'Ипотечное кредитование' ? 
         <label className='calculator__conteinercapital'>
@@ -408,6 +402,12 @@ const Calculator = (props) => {
             </label>
         </>
     
+    const numberWithSpaces = (number) => {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+      }
+
+    const inputValueClass = errorValue ? 'inputValue__input input__error' : 'inputValue__input'
+    const onputContributionClass = errorContribution ? 'calculator__contribution input__error' : 'calculator__contribution'
 
     const getElementNextStep = () => {
         if(information.secondStep) {
@@ -417,9 +417,9 @@ const Calculator = (props) => {
                     <div className='calculator__inputValue inputValue'>
                         <button className='inputValue__button inputValue__button--left' onClick={onButtonDecrease}></button>
                         <label className='calculator__clarification'>{goalСredit}
-                            <div className='inputValue__input' id='value'>
+                            <div className={inputValueClass} id='value'>
                                 <span className={errorValueText}>Некорректное значение</span>
-                                <input className='inputValue__value' value={information.propertyValue} type='number' min={minValue} max={maxValue} onChange={onChangePrice}></input>
+                                <input className='inputValue__value' value={numberWithSpaces(information.propertyValue)} min={minValue} max={maxValue} onChange={onChangePrice}/>
                                 <span>рублей</span>
                             </div>
                         </label>
@@ -427,8 +427,8 @@ const Calculator = (props) => {
                     </div>
                     <span className='calculator__options'>От {minValue}  до {maxValue} рублей</span>
                     <label className='calculator__clarification calculator__clarification--margin'>Первоначальный взнос
-                        <div className='calculator__contribution' id='contribution'>
-                            <input className='calculator__contribution-value' type='number' value={information.anInitialFee} min={minContributionValue} max={information.propertyValue} onChange={changeInContribution} />
+                        <div className={onputContributionClass} id='contribution'>
+                            <input className='calculator__contribution-value' value={numberWithSpaces(information.anInitialFee)} min={minContributionValue} max={information.propertyValue} onChange={changeInContribution} />
                             <span>рублей</span>
                         </div>
                     </label>

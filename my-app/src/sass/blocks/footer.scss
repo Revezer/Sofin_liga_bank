@@ -260,8 +260,8 @@
 
 @media (min-width: $desktop-width-ower) {
     .footer__conteiner {
-        margin-left: 98px;
-        margin-right: 98px;
+        margin-left: auto;
+        margin-right: auto;
         justify-content: start;
     }
 
@@ -275,6 +275,7 @@
     .footer__cont {
         justify-content: start;
         flex-grow: 0;
+        margin-left: 98px;
     }
 
     .footer__list {
