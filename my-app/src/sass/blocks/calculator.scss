@@ -255,6 +255,7 @@
     background: #C1C2CA;
     outline: none;
     margin-top: 21px;
+    cursor: pointer;
 }
 
 .calculator__slider::-webkit-slider-thumb {
@@ -694,17 +695,17 @@ input[type="number"] {
     }
 
     .calculator__inputValue {
-        margin-top: 9px;
+        margin-top: 0px;
         width: 100%;
     }
 
     .inputValue__button--right {
         right: 24px;
-        top: 58px;
+        top: 66px;
     }
 
     .inputValue__button--left {
-        top: 57px;
+        top: 66px;
     }
 
     .inputValue__input {

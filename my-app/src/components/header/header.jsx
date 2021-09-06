@@ -11,10 +11,17 @@ const Header = (props) => {
 
     const onMenuOpen = () => {
         switchingMenu(true)
+        window.onkeydown = (evt) => {
+            if ( evt.keyCode === 27 ) {
+                onMenuClose()
+            }
+        }
+        document.body.classList.add('openPopUp')
     }
 
     const onMenuClose = () => {
         switchingMenu(false)
+        document.body.classList.remove('openPopUp')
     }
 
     const onLoginOpen = () => {

@@ -25,10 +25,12 @@ main {
 
 .header__conteiner-open {
     flex-direction: column;
-    position: absolute;
     top: 0;
     z-index: 3;
     background: white;
+    height: 100%;
+    justify-content: start;
+    position: fixed;
 }
 
 .header__logomenu {
@@ -59,7 +61,6 @@ main {
     flex-direction: column;
     left: 16px;
     border-top: 1px solid #C1C2CA;
-    flex-grow: 1;
     margin-left: 16px;
     margin-top: 49px;
     margin-right: 16px;
@@ -235,7 +236,7 @@ main {
 
     .header__logomenu {
         width: 150px;
-        margin-left: 98px;
+        margin-left: 50px;
         margin-top: 26px;
         margin-right: 0px;
     }
@@ -251,7 +252,7 @@ main {
     
     .header__login {
         width: 173px;
-        margin-right: 98px;
+        margin-right: 50px;
         margin-left: 0px;
     }
     
@@ -262,6 +263,10 @@ main {
 }
 
 @media (min-width: $desktop-width-ower) {
+    .header__logomenu {
+        margin-left: 98px;
+    }
+
     .header__conteiner {
         justify-content: start;
     }

@@ -15,16 +15,16 @@
     margin-top: 54px;
     margin-left: 15px;
     white-space: pre-wrap;
+    padding-right: 29px;
 }
 
 .service__text-conteiner {
     display: flex;
     flex-direction: column;
-    width: 242px;
+    width: 100%;
     height: 114px;
     justify-content: space-between;
     margin-top: 21px;
-
 }
 
 .service__text {
@@ -40,6 +40,7 @@
     white-space: pre-wrap;
     position: relative;
     z-index: 1;
+    padding-right: 70px;
 }
 
 .service__text::before {
@@ -84,6 +85,7 @@
     margin-top: 22px;
     display: block;
     margin-left: 15px;
+    padding-right: 55px;
 }
 
 .service__text-button {
@@ -158,6 +160,7 @@
         font-size: 18px;
         margin-left: 45px;
         margin-bottom: 0;
+        width: 304px;
     }
 
     .service__text-conteiner {
@@ -168,6 +171,7 @@
     .service__text {
         font-size: 16px;
         margin-left: 66px;
+        padding-right: 0px;
     }
 
     .service__slider .swiper-pagination-bullet {
@@ -202,6 +206,7 @@
         font-size: 16px;
         margin-top: 29px;
         margin-left: 45px;
+        padding-right: 387px;
     }
 
     .service__text-button {
@@ -398,7 +403,7 @@
     }
 
     .service__container::after {
-        right: 135px;
+        right: 60px;
         width: 440px;
         height: 290px;
     }
@@ -421,5 +426,15 @@
     .service__conteiner-car::after {
         background-image: url('../../img/car-desktop.png');
         top: 55px;
+    }
+}
+
+@media (min-width: $desktop-width-ower) {
+    .service__title {
+        width: 373px;
+    }
+
+    .service__container::after {
+        right: 135px;
     }
 }

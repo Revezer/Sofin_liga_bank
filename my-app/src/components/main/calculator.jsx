@@ -55,7 +55,7 @@ const Calculator = (props) => {
         setInformation({
             ...information,
             propertyValue: Number(event.target.value.replace(/\s/g, '')),
-            anInitialFee: Number(event.target.value.replace(/\s/g, '')) * (information.contribution / HUNDRED)
+            anInitialFee: Math.trunc(Number(event.target.value.replace(/\s/g, '')) * (information.contribution / HUNDRED))
 
         })
         setButtonWork(true)
@@ -69,8 +69,8 @@ const Calculator = (props) => {
     }
 
     const onButtonDecrease = () => {
-        let errorInput = document.getElementById('value')
-        errorInput.classList.remove('input__error')
+        setButtonWork(false)
+        setErrorValue(false)
         setInformation({
             ...information,
             propertyValue: information.propertyValue - CHANGE_NUMBER
@@ -80,29 +80,16 @@ const Calculator = (props) => {
                 ...information,
                 propertyValue: MIN_SUM
             })
-        }
-        if (information.propertyValue >= MAX_SUM) {
-            return setInformation({
-                ...information,
-                propertyValue: MAX_SUM
-            })
-        }
-        
+        }       
     }
 
     const onButtonZoom = () => {
-        let errorInput = document.getElementById('value')
-        errorInput.classList.remove('input__error')
+        setButtonWork(false)
+        setErrorValue(false)
         setInformation({
             ...information,
             propertyValue: information.propertyValue + CHANGE_NUMBER
         })
-        if (information.propertyValue <= MIN_SUM) {
-            return setInformation({
-                ...information,
-                propertyValue: MIN_SUM
-            })
-        }
         if (information.propertyValue >= MAX_SUM) {
             return setInformation({
                 ...information,
@@ -115,7 +102,7 @@ const Calculator = (props) => {
         setInformation({
             ...information,
             contribution: event.target.value,
-            anInitialFee: information.propertyValue * (event.target.value / HUNDRED)
+            anInitialFee: Math.trunc(information.propertyValue * (event.target.value / HUNDRED))
         })
     }
 
@@ -340,7 +327,12 @@ const Calculator = (props) => {
         )
     }
 
-    const swichOrdering = buttonWork === true ? noEffect : onOrdering
+    const numberWithSpaces = (number) => {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
+    const swichOrdering = buttonWork ? noEffect : onOrdering
+    const incorrectValue = errorValue ? 'Некорректное значение' : numberWithSpaces(getMortgageAmount()) + ' рублей'
 
     const getElementOfferSwich = () => getMortgageAmount() < minCredit ? 
         <div className='calculator__inaccessibility inaccessibility'>
@@ -352,7 +344,7 @@ const Calculator = (props) => {
                 <span className='offer__text offer__text--first'>Наше предложение</span>
                 <div className='offer__block'>
                     <div className='offer__conteiner'>
-                        <span className='offer__text offer__text--margin'>{numberWithSpaces(getMortgageAmount()) + ' рублей'}</span>
+                        <span className='offer__text offer__text--margin'>{incorrectValue}</span>
                         <span className='offer__description'>{textCredit}</span>
                     </div>
                     <div className='offer__conteiner offer__conteiner--tabletmargin'>
@@ -401,10 +393,6 @@ const Calculator = (props) => {
                 <span className={checkInsurance}>Оформить Страхование жизни в нашем банке</span>
             </label>
         </>
-    
-    const numberWithSpaces = (number) => {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-      }
 
     const inputValueClass = errorValue ? 'inputValue__input input__error' : 'inputValue__input'
     const onputContributionClass = errorContribution ? 'calculator__contribution input__error' : 'calculator__contribution'
