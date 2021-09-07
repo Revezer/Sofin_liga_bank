@@ -1,8 +1,7 @@
 .calculator {
     margin-top: 54px;
-    width: 290px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 15px;
+    margin-right: 15px;
     display: flex;
     flex-direction: column;
 }
@@ -40,7 +39,6 @@
     border: 1px solid #1F1E25;
     box-sizing: border-box;
     border-radius: 4px;
-    width: 290px;
     height: 60px;
     font-family: 'Roboto', 'Arial', sans-serif;
     font-style: normal;
@@ -158,12 +156,11 @@
 
 .inputValue__value, .calculator__contribution-value {
     border: none;
-    width: 75px;
+    width: 88px;
     text-align: end;
 }
 
 .inputValue__input {
-    width: 290px;
     height: 60px;
     padding: 0px;
     border: 1px solid #1F1E25;
@@ -226,7 +223,6 @@
 }
 
 .calculator__contribution {
-    width: 290px;
     height: 60px;
     border: 1px solid #1F1E25;
     box-sizing: border-box;
@@ -250,7 +246,6 @@
 
 .calculator__slider {
     -webkit-appearance: none;
-    width: 290px;
     height: 1px;
     background: #C1C2CA;
     outline: none;
@@ -292,10 +287,11 @@
     line-height: 140%;
     color: #394959;
     margin-top: 9px;
+    display: flex;
+    flex-direction: column;
 }
 
 .calculator__year {
-    width: 290px;
     height: 60px;
     border: 1px solid #1F1E25;
     box-sizing: border-box;
@@ -383,6 +379,8 @@
     display: flex;
     flex-direction: column;
     margin-top: 29px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .offer__conteiner {
@@ -667,7 +665,6 @@ input[type="number"] {
 
 @media (min-width: $tablet-width) {
     .calculator {
-        width: 678px;
         margin-top: 69px;
     }
 
@@ -755,6 +752,7 @@ input[type="number"] {
         width: 100%;
         margin-top: 37px;
         height: 390px;
+        width: 678px;
     }
 
     .offer__text {
